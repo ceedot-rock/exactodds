@@ -1,0 +1,44 @@
+# Provably-fair coin flip — a Provably reference game.
+#
+# Provably-fair casinos already prove the OUTCOME wasn't rigged (commit-reveal
+# of seeds). What they can't prove today: the GAME RULES are identical to what
+# was audited. This program is that missing half.
+#
+# The flip below compiles to provably identical behavior on every target seat
+# (exactness PASS), or the compiler refuses it. Same seeds -> same flips, on
+# every seat. A house cannot ship one ruleset for the audit and run another
+# in production.
+#
+# Rules: mix server_seed + client_seed + round with a Park-Miller LCG step,
+# then take the flip as heads when the resulting state is even, tails when it
+# is odd. Deterministic. No randomness inside the program — the seeds ARE the
+# randomness, revealed after the bet.
+
+def flip(server_seed: int, client_seed: int, round: int) -> str do
+    mut mixed = (server_seed * 31 + client_seed * 17 + round * 13) % 2147483647
+    mut state = (48271 * mixed) % 2147483647
+    if state % 2 == 0 do
+        ret "heads"
+    els
+        ret "tails"
+    end
+end
+
+def flip_bit(server_seed: int, client_seed: int, round: int) -> int do
+    mut mixed = (server_seed * 31 + client_seed * 17 + round * 13) % 2147483647
+    mut state = (48271 * mixed) % 2147483647
+    ret state % 2
+end
+
+# Eight audited flips. Any player re-running this program with the same
+# revealed seeds gets the same results — on every seat.
+say(flip(987654321, 123456789, 1))
+say(flip(987654321, 123456789, 2))
+say(flip(987654321, 123456789, 3))
+say(flip(987654321, 123456789, 4))
+say(flip(987654321, 123456789, 5))
+say(flip(111111111, 222222222, 1))
+say(flip(111111111, 222222222, 2))
+say(flip(555555555, 999999999, 7))
+say(flip_bit(987654321, 123456789, 1))
+say(flip_bit(555555555, 999999999, 7))

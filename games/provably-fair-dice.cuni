@@ -1,0 +1,33 @@
+# Provably-fair dice — a Provably reference game.
+#
+# Provably-fair casinos already prove the OUTCOME wasn't rigged (commit-reveal
+# of seeds). What they can't prove today: the GAME RULES are identical to what
+# was audited. This program is that missing half.
+#
+# The outcome derivation below compiles to provably identical behavior on
+# every Provably target seat (exactness PASS), or the compiler refuses it.
+# Same seeds -> same roll, on py/go/js/ts/c/cpp/rs and all 144 catalog ids.
+# A house cannot ship one ruleset for the audit and run another in production.
+#
+# Rules: mix server_seed + client_seed + round with a Park-Miller LCG step,
+# then take the roll as (state % 6) + 1. Deterministic. No randomness inside
+# the program — the seeds ARE the randomness, revealed after the bet.
+
+def roll_dice(server_seed: int, client_seed: int, round: int) -> int do
+    mut mixed = (server_seed * 31 + client_seed * 17 + round * 13) % 2147483647
+    mut state = (48271 * mixed) % 2147483647
+    ret (state % 6) + 1
+end
+
+def roll_hundred(server_seed: int, client_seed: int, round: int) -> int do
+    mut mixed = (server_seed * 31 + client_seed * 17 + round * 13) % 2147483647
+    mut state = (48271 * mixed) % 2147483647
+    ret state % 100
+end
+
+# Three audited rolls. Any player re-running this program with the same
+# revealed seeds gets the same numbers — on any of the 144 targets.
+say(roll_dice(987654321, 123456789, 1))
+say(roll_dice(987654321, 123456789, 2))
+say(roll_dice(111111111, 222222222, 1))
+say(roll_hundred(987654321, 123456789, 1))
