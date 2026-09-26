@@ -1,4 +1,4 @@
-# Provably — one page for casino operators
+# ExactOdds — one page for casino operators
 
 **Fair outcomes you can prove. Rules you can prove. Both, or neither.**
 
@@ -12,7 +12,7 @@ seeds into results is a black box. Show one ruleset to an auditor, run
 another in production — no seed math catches that. Players verify the dice.
 Nobody verifies the table.
 
-## What Provably adds
+## What ExactOdds adds
 
 One law: **the same game program, byte-identical output on every machine —
 or the program is refused.** Your game is written once, compiled to Python,

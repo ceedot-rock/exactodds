@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Provably exactness gate runner.
+# ExactOdds exactness gate runner.
 #
 # For each reference game in games/, this script:
-#   1. Finds the Provably reference compiler (cuni).
+#   1. Finds the ExactOdds reference compiler (cuni).
 #   2. Runs the exactness gate: emits each native seat (py, js, ts, c, cpp),
 #      runs them, and requires byte-identical stdout. Refuses on mismatch.
 #   3. Writes a source-hash receipt next to receipts/.
@@ -35,7 +35,7 @@ find_compiler() {
 }
 
 CUNI="$(find_compiler)" || {
-    echo "run-gate: no Provably reference compiler found." >&2
+    echo "run-gate: no ExactOdds reference compiler found." >&2
     echo "run-gate: set PROVABLY_COMPILER=/path/to/cuni and retry." >&2
     exit 1
 }

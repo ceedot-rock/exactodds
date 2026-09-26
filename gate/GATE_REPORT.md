@@ -1,4 +1,4 @@
-# Provably exactness gate report — 2026-09-26
+# ExactOdds exactness gate report — 2026-09-26
 
 Both reference games gated on the same day, same seat matrix
 (py, js, ts, c, cpp — native seats). Every seat emitted and ran; stdout had
@@ -40,7 +40,7 @@ tails
 - Gate: `cuni check games/provably-fair-dice.cuni --only py,js,ts,c,cpp --receipt`
 - Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
 - Source SHA-256: `795a43fa1864c30565d436e302ac0011662b01a45dc4c023c5af37f76ccdbb44`
-  (comments adapted to the Provably surface 2026-09-26; the program logic and
+  (comments adapted to the ExactOdds surface 2026-09-26; the program logic and
   outputs are unchanged from the original gated version — stdout still
   matches the 2026-09-26 golden fixture)
 - Seat matrix, every seat 9 bytes, byte-identical (verified with `cmp`):

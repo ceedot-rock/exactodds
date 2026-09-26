@@ -1,12 +1,12 @@
-# Provably
+# ExactOdds
 
 Fair outcomes you can prove. Rules you can prove. Both, or neither.
 
-Provably is a protocol for provably-fair gaming with two halves: **commit-reveal
+ExactOdds is a protocol for provably-fair gaming with two halves: **commit-reveal
 seeds** (the outcome was fixed before your bet) and the **exactness law** (the
 game program produces byte-identical output on every target seat — Python,
 JavaScript, TypeScript, C, C++ — or the program is refused). Today's
-"provably fair" proves only the outcome. Provably proves the rules too: the
+"provably fair" proves only the outcome. ExactOdds proves the rules too: the
 program an auditor gates is the only program that can pass, so a house can't
 run different rules in production than the ones it showed the auditor.
 
@@ -47,7 +47,7 @@ or gcc.
 ./gate/run-gate.sh
 ```
 
-This needs the Provably reference compiler. Point it at your build:
+This needs the ExactOdds reference compiler. Point it at your build:
 
 ```sh
 PROVABLY_COMPILER=/path/to/cuni ./gate/run-gate.sh

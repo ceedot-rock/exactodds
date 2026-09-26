@@ -1,4 +1,4 @@
-# Provably: Fair Outcomes and Provably Identical Rules
+# ExactOdds: Fair Outcomes, Provably Identical Rules
 
 **Slid Phi Labs — 26 September 2026**
 
@@ -20,13 +20,13 @@ seeds into a roll, a card, a flip — is a black box. The house can show one
 ruleset to an auditor and run a different one in production, and no amount of
 seed math will catch it. Players verify the dice; nobody verifies the table.
 
-Provably closes that gap. It makes the rules themselves provable: the exact
+ExactOdds closes that gap. It makes the rules themselves provable: the exact
 same game program, running identically, on every machine that runs it — or
 the program is refused outright.
 
 ## 2. The protocol
 
-Provably has two halves, and both have to hold for a game to be called fair.
+ExactOdds has two halves, and both have to hold for a game to be called fair.
 
 **Half 1 — commit-reveal (the outcome is provable).** Standard practice,
 unchanged:
@@ -161,7 +161,7 @@ The receipt is not trust — it's a checkable claim.
 
 Plainly, so there's no confusion:
 
-- **Not a casino.** Provably is a protocol and two reference games. It takes
+- **Not a casino.** ExactOdds is a protocol and two reference games. It takes
   no bets, holds no funds, and operates no tables.
 - **Not a license.** Nothing here grants or implies a gaming license in any
   jurisdiction. Operators are responsible for their own compliance.
