@@ -35,13 +35,16 @@ What that buys you:
 
 ## The reference games
 
-Two games ship gated and receipted (2026-09-26, all five seats PASS,
+Three games ship gated and receipted (2026-09-26, all five seats PASS,
 byte-identical):
 
 - **Dice** — Park-Miller mix of server seed + client seed + round, roll is
   `(state % 6) + 1`. Source `46279363…f6034d`.
 - **Coin flip** — same derivation, heads on even state, tails on odd.
   Source `04783043…7510c3d0`.
+- **Roulette** — same derivation, winning number `(state % 37)` on a European
+  wheel; color, odd/even, high/low derived from the number. Source
+  `1eaac333…79c9cc9c`.
 
 Each new game (blackjack, roulette, slots) follows the same pattern: one
 source, one gate pass, one receipt.

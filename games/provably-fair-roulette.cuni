@@ -1,0 +1,79 @@
+# Provably-fair European roulette — an ExactOdds reference game.
+#
+# Provably-fair casinos already prove the OUTCOME wasn't rigged (commit-reveal
+# of seeds). What they can't prove today: the GAME RULES are identical to what
+# was audited. This program is that missing half.
+#
+# The spin below compiles to provably identical behavior on every target seat
+# (exactness PASS), or the compiler refuses it. Same seeds -> same spins, on
+# every seat. A house cannot ship one ruleset for the audit and run another
+# in production.
+#
+# Rules: mix server_seed + client_seed + round with a Park-Miller LCG step,
+# then take the winning number as (state % 37) — a European wheel, 0-36.
+# Color, odd/even, and high/low are derived deterministically from the number
+# using the standard European layout (red: 1,3,5,7,9,12,14,16,18,19,21,23,
+# 25,27,30,32,34,36; 0 is green and takes neither odd/even nor high/low).
+# Deterministic. No randomness inside the program — the seeds ARE the
+# randomness, revealed after the bet.
+
+def spin(server_seed: int, client_seed: int, round: int) -> int do
+    mut mixed = (server_seed * 31 + client_seed * 17 + round * 13) % 2147483647
+    mut state = (48271 * mixed) % 2147483647
+    ret state % 37
+end
+
+def is_red(n: int) -> bool do
+    ret n == 1 or n == 3 or n == 5 or n == 7 or n == 9 or n == 12 or n == 14 or n == 16 or n == 18 or n == 19 or n == 21 or n == 23 or n == 25 or n == 27 or n == 30 or n == 32 or n == 34 or n == 36
+end
+
+def color_of(n: int) -> str do
+    if n == 0 do
+        ret "green"
+    els
+        if is_red(n) do
+            ret "red"
+        els
+            ret "black"
+        end
+    end
+end
+
+def parity_of(n: int) -> str do
+    if n == 0 do
+        ret "neither"
+    els
+        if n % 2 == 1 do
+            ret "odd"
+        els
+            ret "even"
+        end
+    end
+end
+
+def range_of(n: int) -> str do
+    if n == 0 do
+        ret "neither"
+    els
+        if n <= 18 do
+            ret "low"
+        els
+            ret "high"
+        end
+    end
+end
+
+def spin_line(server_seed: int, client_seed: int, round: int) -> str do
+    mut n = spin(server_seed, client_seed, round)
+    ret `spin ${round}: ${n} ${color_of(n)} ${parity_of(n)} ${range_of(n)}`
+end
+
+# Seven audited spins. Any player re-running this program with the same
+# revealed seeds gets the same results — on every seat.
+say(spin_line(987654321, 123456789, 1))
+say(spin_line(987654321, 123456789, 2))
+say(spin_line(987654321, 123456789, 3))
+say(spin_line(111111111, 222222222, 1))
+say(spin_line(111111111, 222222222, 2))
+say(spin_line(555555555, 999999999, 7))
+say(spin_line(424242424, 242424242, 13))

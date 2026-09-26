@@ -1,0 +1,8 @@
+{
+  "path": "games/provably-fair-roulette.cuni",
+  "source_hash": "1eaac333fa3d25c23224a0d649a52471e3e38077c406d4913212271d79c9cc9c",
+  "exact": true,
+  "summary": "exactness: PASS (5 langs)",
+  "langs": 5,
+  "seats": [{"id":"py","seat":"native","emit":true,"run":true},{"id":"js","seat":"native","emit":true,"run":true},{"id":"ts","seat":"native","emit":true,"run":true},{"id":"c","seat":"native","emit":true,"run":true},{"id":"cpp","seat":"native","emit":true,"run":true}]
+}

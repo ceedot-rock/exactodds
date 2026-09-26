@@ -1,6 +1,6 @@
 # ExactOdds exactness gate report — 2026-09-26
 
-Both reference games gated on the same day, same seat matrix
+Three reference games gated on the same day, same seat matrix
 (py, js, ts, c, cpp — native seats). Every seat emitted and ran; stdout had
 to be byte-identical or the run fails. Nothing was faked: outputs below are
 the real seat outputs, captured per seat.
@@ -62,10 +62,38 @@ Golden stdout (also in `gate/fixtures/dice.stdout`):
 84
 ```
 
+## provably-fair-roulette
+
+- Gate: `cuni check games/provably-fair-roulette.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `1eaac333fa3d25c23224a0d649a52471e3e38077c406d4913212271d79c9cc9c`
+- Seat matrix, every seat 180 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 180          | f3cc95467f2d41d7f96cccb08ba84bd95f53adc0bcb6a5752a7f1e6cab71fe70 |
+| js   | ok   | ok  | 180          | f3cc95467f2d41d7f96cccb08ba84bd95f53adc0bcb6a5752a7f1e6cab71fe70 |
+| ts   | ok   | ok  | 180          | f3cc95467f2d41d7f96cccb08ba84bd95f53adc0bcb6a5752a7f1e6cab71fe70 |
+| c    | ok   | ok  | 180          | f3cc95467f2d41d7f96cccb08ba84bd95f53adc0bcb6a5752a7f1e6cab71fe70 |
+| cpp  | ok   | ok  | 180          | f3cc95467f2d41d7f96cccb08ba84bd95f53adc0bcb6a5752a7f1e6cab71fe70 |
+
+Golden stdout (also in `gate/fixtures/roulette.stdout`):
+
+```
+spin 1: 31 black odd high
+spin 2: 34 red even high
+spin 3: 0 green neither neither
+spin 1: 6 black even low
+spin 2: 9 red odd low
+spin 7: 23 red odd high
+spin 13: 2 black even low
+```
+
 ## Notes
 
-- No seat failed on either game. No special-casing, no waivers.
-- The two games share one derivation shape (seed mix + Park-Miller step);
-  dice takes `(state % 6) + 1`, coin flip takes parity as heads/tails.
+- No seat failed on any game. No special-casing, no waivers.
+- The three games share one derivation shape (seed mix + Park-Miller step);
+  dice takes `(state % 6) + 1`, coin flip takes parity as heads/tails, roulette
+  takes `(state % 37)` and derives the standard bets from the number.
 - Receipts from these runs live in `receipts/`; they name the source hash,
   the exactness verdict, and per-seat emit/run status.

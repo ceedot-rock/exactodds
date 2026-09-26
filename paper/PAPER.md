@@ -74,8 +74,8 @@ stay inside. Nothing about the outcome is left to the machine's mood.
 
 ## 3. The reference games
 
-Two games ship in this repository, both gated 2026-09-26 on the five-seat
-matrix (py, js, ts, c, cpp). Both passed: every seat byte-identical.
+Three games ship in this repository, all gated 2026-09-26 on the five-seat
+matrix (py, js, ts, c, cpp). All passed: every seat byte-identical.
 
 ### Game 1 — Dice (`games/provably-fair-dice.cuni`)
 
@@ -117,6 +117,30 @@ tails
 
 Source SHA-256: `04783043adaf23b7880977bfaacc4324eb02d8d77bf41991f7dfd6037510c3d0`
 Stdout SHA-256: `da48a6ba509f0840da7040eaa51961e9506334e043601253c534437a091202b7`
+
+### Game 3 — European roulette (`games/provably-fair-roulette.cuni`)
+
+Same derivation shape (seed mix + Park-Miller step); the winning number is
+`(state % 37)` — a European wheel, 0–36. Color, odd/even, and high/low are
+derived deterministically from the number under the standard European layout
+(reds: 1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36; 0 is green and takes
+neither odd/even nor high/low). One of the seven audited spins lands on 0,
+exercising the green path.
+
+Audited outputs (same seeds, every seat, 180 bytes total):
+
+```
+spin 1: 31 black odd high
+spin 2: 34 red even high
+spin 3: 0 green neither neither
+spin 1: 6 black even low
+spin 2: 9 red odd low
+spin 7: 23 red odd high
+spin 13: 2 black even low
+```
+
+Source SHA-256: `1eaac333fa3d25c23224a0d649a52471e3e38077c406d4913212271d79c9cc9c`
+Stdout SHA-256: `f3cc95467f2d41d7f96cccb08ba84bd95f53adc0bcb6a5752a7f1e6cab71fe70`
 
 ### Worked verification — follow along (players and operators)
 
@@ -171,8 +195,8 @@ Plainly, so there's no confusion:
   generate them. Seed generation and commitment handling are the operator's
   job, and they must be done honestly — the math only catches cheating, it
   doesn't prevent a dishonest setup.
-- **Two games, not a platform.** Dice and coin flip demonstrate the pattern.
-  Blackjack, roulette, slots — each new game needs its own source, its own
+- **Three games, not a platform.** Dice, coin flip, and roulette demonstrate
+  the pattern. Blackjack, slots — each new game needs its own source, its own
   gate pass, its own receipt. The pattern scales; the games don't write
   themselves.
 
