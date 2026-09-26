@@ -39,7 +39,7 @@ Three games ship gated and receipted (2026-09-26, all five seats PASS,
 byte-identical):
 
 - **Dice** — Park-Miller mix of server seed + client seed + round, roll is
-  `(state % 6) + 1`. Source `46279363…f6034d`.
+  `(state % 6) + 1`. Source `795a43fa…ccdbb44`.
 - **Coin flip** — same derivation, heads on even state, tails on odd.
   Source `04783043…7510c3d0`.
 - **Roulette** — same derivation, winning number `(state % 37)` on a European

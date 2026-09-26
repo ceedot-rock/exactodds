@@ -91,7 +91,7 @@ Audited outputs (same seeds, every seat, 9 bytes total):
 84
 ```
 
-Source SHA-256: `4627936386e0e69a875bdf473dc912167aa4449001fe8e7e96c55c52dbf6034d`
+Source SHA-256: `795a43fa1864c30565d436e302ac0011662b01a45dc4c023c5af37f76ccdbb44`
 Stdout SHA-256: `a79a72f0b7987fab1a4e54c85f617a723f5d2b25aa1d3b2f2fc3a2a470ba5f8b`
 
 ### Game 2 — Coin flip (`games/provably-fair-coin-flip.cuni`)
