@@ -1,5 +1,5 @@
 {
-  "path": "games/provably-fair-coin-flip.cuni",
+  "path": "/home/hatch/workspace/exactodds/games/provably-fair-coin-flip.cuni",
   "source_hash": "04783043adaf23b7880977bfaacc4324eb02d8d77bf41991f7dfd6037510c3d0",
   "exact": true,
   "summary": "exactness: PASS (5 langs)",

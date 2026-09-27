@@ -1,0 +1,45 @@
+# Bonus wagering — an ExactOdds casino rule pack.
+#
+# The most disputed math in online casinos: "did I clear my wagering
+# requirement?" The player sees one number, support sees another, and the
+# bonus engine's game-weighting table lives somewhere nobody can audit.
+# This program is the shared, exact version of that math.
+#
+# Rules: a bonus of B cents carries a wagering requirement of B * mult cents
+# of weighted play. Each bet contributes bet_cents * weight_pct / 100 toward
+# the requirement (slots 100, table games 10, excluded games 0 — the weights
+# are inputs, so the operator's published table is exactly what runs).
+# wagering_remaining() reports what's left after a bet; bonus_cleared()
+# reports 1 when the bonus converts to cash, 0 otherwise.
+# The derivation below compiles to provably identical behavior on every
+# ExactOdds target seat (exactness PASS), or the compiler refuses it.
+# All money in integer cents. No floats anywhere — floats can't be exact.
+
+def wager_contrib(bet_cents: int, weight_pct: int) -> int do
+    ret bet_cents * weight_pct / 100
+end
+
+def wagering_remaining(required_cents: int, wagered_cents: int, bet_cents: int, weight_pct: int) -> int do
+    mut total = wagered_cents + wager_contrib(bet_cents, weight_pct)
+    if total >= required_cents do
+        ret 0
+    els
+        ret required_cents - total
+    end
+end
+
+def bonus_cleared(bonus_cents: int, wager_mult: int, total_wagered_cents: int) -> int do
+    if total_wagered_cents >= bonus_cents * wager_mult do
+        ret 1
+    els
+        ret 0
+    end
+end
+
+# Audited cases: $10.00 bonus at 35x = $350.00 = 35000 cents required.
+say(wager_contrib(1000, 100))
+say(wager_contrib(1000, 10))
+say(wagering_remaining(35000, 34000, 1000, 100))
+say(wagering_remaining(35000, 34000, 500, 10))
+say(bonus_cleared(1000, 35, 35000))
+say(bonus_cleared(1000, 35, 34999))

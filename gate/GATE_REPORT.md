@@ -1,7 +1,8 @@
 # ExactOdds exactness gate report — 2026-09-26
 
-Three reference games gated on the same day, same seat matrix
-(py, js, ts, c, cpp — native seats). Every seat emitted and ran; stdout had
+Six programs gated on the same day, same seat matrix
+(py, js, ts, c, cpp — native seats): three provably-fair reference games
+plus three casino rule packs. Every seat emitted and ran; stdout had
 to be byte-identical or the run fails. Nothing was faked: outputs below are
 the real seat outputs, captured per seat.
 
@@ -89,11 +90,102 @@ spin 7: 23 red odd high
 spin 13: 2 black even low
 ```
 
+## provably-fair-crash
+
+- Gate: `cuni check games/provably-fair-crash.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `50e534572ffb9001af10c5badd7bca2690ad6c461861f597479e869c42861411`
+- Seat matrix, every seat 21 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 21           | 704bc8386c73575396774522dead54d54cd027037fe88a9ec15dfcb58bb64b4b |
+| js   | ok   | ok  | 21           | 704bc8386c73575396774522dead54d54cd027037fe88a9ec15dfcb58bb64b4b |
+| ts   | ok   | ok  | 21           | 704bc8386c73575396774522dead54d54cd027037fe88a9ec15dfcb58bb64b4b |
+| c    | ok   | ok  | 21           | 704bc8386c73575396774522dead54d54cd027037fe88a9ec15dfcb58bb64b4b |
+| cpp  | ok   | ok  | 21           | 704bc8386c73575396774522dead54d54cd027037fe88a9ec15dfcb58bb64b4b |
+
+Golden stdout (also in `gate/fixtures/crash.stdout`):
+
+```
+151
+110
+159
+2000
+0
+0
+```
+
+(Crash points in hundredths: 1.51x, 1.10x, 1.59x. Settlements: $10 cashed at
+2.00x before a 3.50x crash pays $20.00; cashed after the crash or never cashed
+pays 0.)
+
+## casino-bonus-wagering
+
+- Gate: `cuni check games/casino-bonus-wagering.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `48fdd87f2146172f458a58a18663cd299d07d5a5d555631358573c03dfdd93a3`
+- Seat matrix, every seat 19 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 19           | e655c0605d8809ae2ca605ae88cbbd8668c2eeb45b5bef7dd84f21ffd273358f |
+| js   | ok   | ok  | 19           | e655c0605d8809ae2ca605ae88cbbd8668c2eeb45b5bef7dd84f21ffd273358f |
+| ts   | ok   | ok  | 19           | e655c0605d8809ae2ca605ae88cbbd8668c2eeb45b5bef7dd84f21ffd273358f |
+| c    | ok   | ok  | 19           | e655c0605d8809ae2ca605ae88cbbd8668c2eeb45b5bef7dd84f21ffd273358f |
+| cpp  | ok   | ok  | 19           | e655c0605d8809ae2ca605ae88cbbd8668c2eeb45b5bef7dd84f21ffd273358f |
+
+Golden stdout (also in `gate/fixtures/casino-bonus-wagering.stdout`):
+
+```
+1000
+100
+0
+950
+1
+0
+```
+
+($10 bet contributes 1000 cents at 100% weight, 100 at 10%. $10 bonus at 35x:
+fully wagered leaves 0 remaining; a $5 side bet at 10% weight leaves 950;
+35000 wagered clears, 34999 does not.)
+
+## casino-poker-rake
+
+- Gate: `cuni check games/casino-poker-rake.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `59d3f42751e98a0a42ffb1f0499a690eb863dbf6b804d8b8b67e51f6ffac0eb5`
+- Seat matrix, every seat 14 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 14           | 86abfa2b74e9bcec576889335d5e2c2b19536f72a1a11f89dc22f060e320d421 |
+| js   | ok   | ok  | 14           | 86abfa2b74e9bcec576889335d5e2c2b19536f72a1a11f89dc22f060e320d421 |
+| ts   | ok   | ok  | 14           | 86abfa2b74e9bcec576889335d5e2c2b19536f72a1a11f89dc22f060e320d421 |
+| c    | ok   | ok  | 14           | 86abfa2b74e9bcec576889335d5e2c2b19536f72a1a11f89dc22f060e320d421 |
+| cpp  | ok   | ok  | 14           | 86abfa2b74e9bcec576889335d5e2c2b19536f72a1a11f89dc22f060e320d421 |
+
+Golden stdout (also in `gate/fixtures/casino-poker-rake.stdout`):
+
+```
+300
+100
+300
+0
+```
+
+(5% of $100 pot caps at $3.00; 5% of $20 is $1.00; 5% of $1000 caps at $3.00;
+empty pot rakes 0.)
+
 ## Notes
 
 - No seat failed on any game. No special-casing, no waivers.
 - The three games share one derivation shape (seed mix + Park-Miller step);
   dice takes `(state % 6) + 1`, coin flip takes parity as heads/tails, roulette
   takes `(state % 37)` and derives the standard bets from the number.
+- Crash adds a second shape: the same seed mix maps to a crash multiplier via
+  `(99 * 10000) / (10000 - h)` with a 1% instant-bust edge at 1.00x, plus a
+  settlement rule. All money math across every program is integer cents —
+  no floats anywhere, since floats can't be exact.
 - Receipts from these runs live in `receipts/`; they name the source hash,
   the exactness verdict, and per-seat emit/run status.

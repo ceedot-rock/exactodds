@@ -1,6 +1,6 @@
 {
-  "path": "/home/hatch/workspace/exactodds/games/provably-fair-roulette.cuni",
-  "source_hash": "1eaac333fa3d25c23224a0d649a52471e3e38077c406d4913212271d79c9cc9c",
+  "path": "/home/hatch/workspace/exactodds/games/casino-poker-rake.cuni",
+  "source_hash": "59d3f42751e98a0a42ffb1f0499a690eb863dbf6b804d8b8b67e51f6ffac0eb5",
   "exact": true,
   "summary": "exactness: PASS (5 langs)",
   "langs": 5,

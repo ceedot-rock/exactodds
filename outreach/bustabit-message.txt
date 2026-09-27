@@ -1,0 +1,18 @@
+Subject: provably fair — the rules half
+
+Hey — Corey here. I run Slid Phi Labs, a small computation lab in NJ.
+
+We built ExactOdds: provably-fair gaming that proves the rules, not just the outcomes. One game program, compiled to five runtimes (Python, JS, TS, C, C++). Every seat has to produce byte-identical output for the same inputs, or the program is refused outright. Each game ships a source-hash receipt, so players can verify the house is running the audited code.
+
+Reference games so far: dice, coin flip, European roulette. All open source.
+
+Repo: https://github.com/ceedot-rock/exactodds
+Live verifier: https://ceedot-rock.github.io/exactodds/verifier/verifier.html
+Paper: https://github.com/ceedot-rock/exactodds/blob/main/paper/PAPER.pdf
+
+You pioneered hash-predetermined crash points. ExactOdds extends your transparency philosophy from outcomes to rules: a public proof that crash rules are byte-identical across runtimes.
+
+Happy to run your own game logic through the gate so you can see it against your rules. No pitch beyond that.
+
+Corey Tasz
+Slid Phi Labs

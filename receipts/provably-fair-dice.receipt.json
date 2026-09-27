@@ -1,5 +1,5 @@
 {
-  "path": "games/provably-fair-dice.cuni",
+  "path": "/home/hatch/workspace/exactodds/games/provably-fair-dice.cuni",
   "source_hash": "795a43fa1864c30565d436e302ac0011662b01a45dc4c023c5af37f76ccdbb44",
   "exact": true,
   "summary": "exactness: PASS (5 langs)",

@@ -1,0 +1,50 @@
+# Provably-fair crash — an ExactOdds reference game.
+#
+# Crash is the game Bustabit pioneered: a multiplier climbs from 1.00x and
+# crashes at a hash-predetermined point. Players cash out before the crash.
+# Casinos already prove the crash POINT wasn't rigged (commit-reveal of
+# seeds). What they can't prove today: the crash CURVE and the SETTLEMENT
+# math are identical to what was audited. This program is that missing half.
+#
+# The derivation below compiles to provably identical behavior on every
+# ExactOdds target seat (exactness PASS), or the compiler refuses it.
+#
+# Rules: mix server_seed + client_seed + round with a Park-Miller LCG step.
+# Take h = state % 10000 (basis points). If h < 100 the round busts instantly
+# at 1.00x — the 1% house edge, out in the open, not hidden in the code.
+# Otherwise the crash multiplier, in hundredths, is:
+#     crash = (99 * 10000) / (10000 - h)
+# Settlement: cashing out at m (hundredths) pays bet * m / 100 — but only if
+# 0 < m < crash. Cashing out at or after the crash, or never cashing out,
+# pays 0. Integer division floors: fractions of a cent stay with the house,
+# and that rule is byte-identical on every seat.
+# All money in integer cents. No floats anywhere — floats can't be exact.
+
+def crash_point(server_seed: int, client_seed: int, round: int) -> int do
+    mut mixed = (server_seed * 31 + client_seed * 17 + round * 13) % 2147483647
+    mut state = (48271 * mixed) % 2147483647
+    mut h = state % 10000
+    if h < 100 do
+        ret 100
+    end
+    ret (99 * 10000) / (10000 - h)
+end
+
+def settle_crash(bet_cents: int, cashout_hundredths: int, crash_hundredths: int) -> int do
+    if cashout_hundredths == 0 do
+        ret 0
+    end
+    if cashout_hundredths >= crash_hundredths do
+        ret 0
+    end
+    ret bet_cents * cashout_hundredths / 100
+end
+
+# Audited rounds. Any player re-running this program with the same revealed
+# seeds gets the same crash points and settlements — on any target.
+say(crash_point(987654321, 123456789, 1))
+say(crash_point(987654321, 123456789, 2))
+say(crash_point(111111111, 222222222, 1))
+say(settle_crash(1000, 200, 350))
+say(settle_crash(1000, 400, 350))
+say(settle_crash(1000, 0, 350))

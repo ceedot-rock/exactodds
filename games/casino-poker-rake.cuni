@@ -1,0 +1,24 @@
+# Poker rake — an ExactOdds casino rule pack.
+#
+# "How much rake did you take?" Players ask it every day; the answer comes
+# from code they can't see. This program is the rake rule both sides run:
+# rake_pct percent of the pot, capped at cap_cents. Same inputs, same rake,
+# on the operator's server and the player's verifier.
+# The derivation below compiles to provably identical behavior on every
+# ExactOdds target seat (exactness PASS), or the compiler refuses it.
+# All money in integer cents. No floats anywhere — floats can't be exact.
+
+def rake(pot_cents: int, rake_pct: int, cap_cents: int) -> int do
+    mut r = pot_cents * rake_pct / 100
+    if r > cap_cents do
+        ret cap_cents
+    els
+        ret r
+    end
+end
+
+# Audited cases: 5% rake capped at $3.00.
+say(rake(10000, 5, 300))
+say(rake(2000, 5, 300))
+say(rake(100000, 5, 300))
+say(rake(0, 5, 300))

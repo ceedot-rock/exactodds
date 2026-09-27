@@ -1,6 +1,6 @@
 {
-  "path": "/home/hatch/workspace/exactodds/games/provably-fair-roulette.cuni",
-  "source_hash": "1eaac333fa3d25c23224a0d649a52471e3e38077c406d4913212271d79c9cc9c",
+  "path": "/home/hatch/workspace/exactodds/games/provably-fair-crash.cuni",
+  "source_hash": "50e534572ffb9001af10c5badd7bca2690ad6c461861f597479e869c42861411",
   "exact": true,
   "summary": "exactness: PASS (5 langs)",
   "langs": 5,

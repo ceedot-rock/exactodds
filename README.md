@@ -12,9 +12,12 @@ run different rules in production than the ones it showed the auditor.
 
 ## What's here
 
-- `games/` — the three reference games: `provably-fair-dice.cuni`,
-  `provably-fair-coin-flip.cuni`, and `provably-fair-roulette.cuni`. Short,
-  readable, deterministic: seeds in, result out.
+- `games/` — three reference games (`provably-fair-dice.cuni`,
+  `provably-fair-coin-flip.cuni`, `provably-fair-roulette.cuni`,
+  `provably-fair-crash.cuni`) and three casino rule packs
+  (`casino-bonus-wagering.cuni`, `casino-poker-rake.cuni`). Short, readable,
+  deterministic: seeds in, result out. All money math is integer cents —
+  no floats anywhere.
 - `gate/` — the exactness gate runner (`run-gate.sh`), golden fixtures
   (`fixtures/`), and the per-seat gate report (`GATE_REPORT.md`).
 - `receipts/` — source-hash receipts from the verified 2026-09-26 runs.
