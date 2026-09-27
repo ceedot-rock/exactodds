@@ -1,0 +1,34 @@
+# Baccarat settlement — an ExactOdds casino rule pack.
+#
+# Baccarat's edge lives in one rule: banker wins pay 19:20, not even money.
+# Get the commission wrong and the whole game's math drifts. This program is
+# the settlement both the table system and the player's receipt run: stake,
+# bet side, and winner in, exact payout in cents out.
+#
+# Rules: bet_on 0 = player, 1 = banker, 2 = tie; winner uses the same codes.
+# A player win pays 1:1. A banker win pays 19:20 (the 5% commission).
+# A tie bet pays 8:1; player/banker bets push on a tie — stake back.
+# A losing side pays 0. Integer cents, no floats — floats can't be exact.
+
+def baccarat_settle(stake_cents: int, bet_on: int, winner: int) -> int do
+    if winner == 2 do
+        if bet_on == 2 do
+            ret stake_cents + stake_cents * 8
+        end
+        ret stake_cents
+    end
+    if bet_on == winner do
+        if bet_on == 1 do
+            ret stake_cents + stake_cents * 19 / 20
+        end
+        ret stake_cents * 2
+    end
+    ret 0
+end
+
+# Audited cases: $10 stake.
+say(baccarat_settle(1000, 0, 0))
+say(baccarat_settle(1000, 1, 1))
+say(baccarat_settle(1000, 2, 2))
+say(baccarat_settle(1000, 0, 2))
+say(baccarat_settle(1000, 1, 0))

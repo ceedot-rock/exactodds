@@ -1,0 +1,25 @@
+# Raffle / draw winner — an ExactOdds casino rule pack.
+#
+# Prize draws and raffle winners have to be provably fair the same way dice
+# rolls are: a published seed, a published mixing rule, and a winner anyone
+# can recompute. This program takes the draw seed and the ticket count and
+# returns the winning ticket number — the same ticket on every seat, or the
+# program refuses to compile.
+#
+# Rules: tickets are numbered 1..N; winner = 1 + state % tickets. Mixing is
+# Park-Miller under 2^31 (the same arithmetic the dice game uses), so every
+# seat — Python big-ints, C int64, JS doubles — computes the identical
+# value. The seed must be a non-negative integer below 290 trillion and
+# committed before ticket sales close — a seed chosen after the draw is not
+# provably fair.
+
+def raffle_winner(seed: int, tickets: int) -> int do
+    mut mixed = (seed * 31 + 17) % 2147483647
+    mut state = (48271 * mixed) % 2147483647
+    ret 1 + state % tickets
+end
+
+# Audited cases.
+say(raffle_winner(12345, 100))
+say(raffle_winner(999, 50))
+say(raffle_winner(1, 10))

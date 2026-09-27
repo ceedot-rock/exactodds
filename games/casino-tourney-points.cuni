@@ -1,0 +1,21 @@
+# Tournament leaderboard points — an ExactOdds casino rule pack.
+#
+# Tournament standings are prize money by another name, so the scoring
+# formula has to be one program, not a spreadsheet someone edited. This is
+# the formula every entrant sees before they buy in: points scale with the
+# field size and fall off with finishing place. Same entrants, same place,
+# same points — on every seat, or the program refuses to compile.
+#
+# Rules: points = entrants * 100 / place, integer division floors. First
+# place in a 100-player field scores 10,000; last place scores 100. Ties
+# split by the tournament's own tiebreak, applied to the same program.
+
+def tourney_points(place: int, entrants: int) -> int do
+    ret entrants * 100 / place
+end
+
+# Audited cases.
+say(tourney_points(1, 100))
+say(tourney_points(10, 100))
+say(tourney_points(100, 100))
+say(tourney_points(3, 64))

@@ -1,0 +1,23 @@
+# Cashback / rebate — an ExactOdds casino rule pack.
+#
+# VIP cashback is a standing promise: lose X, get Y% back. When the rebate
+# lands short, the argument is about whose spreadsheet is right. This program
+# is the promise, published: net loss and rebate rate in, exact rebate in
+# cents out. Winning periods pay nothing — cashback is a rebate on losses.
+#
+# Rules: rebate = net_loss * rebate_pct / 100, integer division floors. A
+# net win or break-even (net_loss <= 0) rebates 0. No floats anywhere —
+# floats can't be exact.
+
+def cashback(net_loss_cents: int, rebate_pct: int) -> int do
+    if net_loss_cents <= 0 do
+        ret 0
+    end
+    ret net_loss_cents * rebate_pct / 100
+end
+
+# Audited cases.
+say(cashback(10000, 10))
+say(cashback(-5000, 10))
+say(cashback(999, 15))
+say(cashback(0, 10))

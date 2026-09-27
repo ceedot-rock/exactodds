@@ -1,0 +1,40 @@
+# AML structuring check — an ExactOdds casino rule pack.
+#
+# Structuring is the classic dodge: split one big deposit into several small
+# ones, each under the reporting threshold. Regulators expect operators to
+# catch it with a fixed, published rule — not a black box. This program is
+# that rule: three deposits in the window, one threshold, flag or no flag.
+#
+# Rules: aml_report flags (1) any single deposit at or above the threshold.
+# aml_structuring flags (1) when every deposit in the window sits under the
+# threshold but the window total reaches it. Both return 0 otherwise. The
+# same program runs in the cashier, in compliance, and in the regulator's
+# audit — or it refuses to compile on a seat.
+
+def aml_report(deposit_cents: int, threshold_cents: int) -> int do
+    if deposit_cents >= threshold_cents do
+        ret 1
+    els
+        ret 0
+    end
+end
+
+def aml_structuring(dep1_cents: int, dep2_cents: int, dep3_cents: int, threshold_cents: int) -> int do
+    if dep1_cents < threshold_cents do
+        if dep2_cents < threshold_cents do
+            if dep3_cents < threshold_cents do
+                if dep1_cents + dep2_cents + dep3_cents >= threshold_cents do
+                    ret 1
+                end
+            end
+        end
+    end
+    ret 0
+end
+
+# Audited cases, $10,000 threshold.
+say(aml_report(1000000, 1000000))
+say(aml_report(999999, 1000000))
+say(aml_structuring(900000, 900000, 900000, 1000000))
+say(aml_structuring(500000, 200000, 100000, 1000000))
+say(aml_structuring(1500000, 100000, 100000, 1000000))

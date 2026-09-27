@@ -1,8 +1,8 @@
 # ExactOdds exactness gate report — 2026-09-26
 
-Nine programs gated on the same day, same seat matrix
+Nineteen programs gated on the same day, same seat matrix
 (py, js, ts, c, cpp — native seats): four provably-fair reference games
-plus five casino rule packs. Every seat emitted and ran; stdout had
+plus fifteen casino rule packs. Every seat emitted and ran; stdout had
 to be byte-identical or the run fails. Nothing was faked: outputs below are
 the real seat outputs, captured per seat.
 
@@ -260,6 +260,279 @@ Golden stdout (also in `gate/fixtures/casino-responsible-limits.stdout`):
 
 ($80 deposited + $20 under a $100 cap allowed; $90 + $20 denied. $40 net loss
 + $10 bet under a $50 loss limit allowed; $45 + $10 denied.)
+
+## casino-slots-payline
+
+- Gate: `cuni check games/casino-slots-payline.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `608ed7ac63e478fdfea2e2c835cf92f58c13de97af79685af3e762ab88a7361d`
+- Seat matrix, every seat 19 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 19           | 3e754e46bdadb1a815ecc856b9453cb4c9d8c64341d114bc1d89a2d577c0aa11 |
+| js   | ok   | ok  | 19           | 3e754e46bdadb1a815ecc856b9453cb4c9d8c64341d114bc1d89a2d577c0aa11 |
+| ts   | ok   | ok  | 19           | 3e754e46bdadb1a815ecc856b9453cb4c9d8c64341d114bc1d89a2d577c0aa11 |
+| c    | ok   | ok  | 19           | 3e754e46bdadb1a815ecc856b9453cb4c9d8c64341d114bc1d89a2d577c0aa11 |
+| cpp  | ok   | ok  | 19           | 3e754e46bdadb1a815ecc856b9453cb4c9d8c64341d114bc1d89a2d577c0aa11 |
+
+Golden stdout (also in `gate/fixtures/casino-slots-payline.stdout`):
+
+```
+1000
+100000
+0
+1000
+```
+
+($1 bet, three sevens = $10.00; five diamonds = $1,000.00; a two-cherry
+near-miss pays 0; 50c bet, four bells = $10.00.)
+
+## casino-progressive-jackpot
+
+- Gate: `cuni check games/casino-progressive-jackpot.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `5177fabbd1f946997df878500207f8dc9e81fcd72ac13f12b19cde2c9bedf019`
+- Seat matrix, every seat 23 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 23           | 20caf588a7a98191ce6b9dc0ed9f3ccc6828b88335c06a2aeead1a4f08744a20 |
+| js   | ok   | ok  | 23           | 20caf588a7a98191ce6b9dc0ed9f3ccc6828b88335c06a2aeead1a4f08744a20 |
+| ts   | ok   | ok  | 23           | 20caf588a7a98191ce6b9dc0ed9f3ccc6828b88335c06a2aeead1a4f08744a20 |
+| c    | ok   | ok  | 23           | 20caf588a7a98191ce6b9dc0ed9f3ccc6828b88335c06a2aeead1a4f08744a20 |
+| cpp  | ok   | ok  | 23           | 20caf588a7a98191ce6b9dc0ed9f3ccc6828b88335c06a2aeead1a4f08744a20 |
+
+Golden stdout (also in `gate/fixtures/casino-progressive-jackpot.stdout`):
+
+```
+1000020
+1000030
+500000
+```
+
+($10,000 pool + $10 bet at 2% = $10,000.20; + $5 bet = $10,000.30;
+post-win reset to the $5,000 seed.)
+
+## casino-tourney-points
+
+- Gate: `cuni check games/casino-tourney-points.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `be59fa0d6c1847b9e5ba0e7c3a9495fd14fded625516e4c6404201ef002ce66d`
+- Seat matrix, every seat 20 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 20           | 1bd45647ff031dd0bacee8ff81a402e169fa9f62bb45f06bfc285ee450416aa8 |
+| js   | ok   | ok  | 20           | 1bd45647ff031dd0bacee8ff81a402e169fa9f62bb45f06bfc285ee450416aa8 |
+| ts   | ok   | ok  | 20           | 1bd45647ff031dd0bacee8ff81a402e169fa9f62bb45f06bfc285ee450416aa8 |
+| c    | ok   | ok  | 20           | 1bd45647ff031dd0bacee8ff81a402e169fa9f62bb45f06bfc285ee450416aa8 |
+| cpp  | ok   | ok  | 20           | 1bd45647ff031dd0bacee8ff81a402e169fa9f62bb45f06bfc285ee450416aa8 |
+
+Golden stdout (also in `gate/fixtures/casino-tourney-points.stdout`):
+
+```
+10000
+1000
+100
+2133
+```
+
+(1st of 100 = 10,000 pts; 10th = 1,000; 100th = 100; 3rd of 64 = 2,133.)
+
+## casino-cashback
+
+- Gate: `cuni check games/casino-cashback.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `c193f4cdfbe7da2438f7a788fceb7c5d4579b2e1521eeb6499eb9a019920ab47`
+- Seat matrix, every seat 13 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 13           | 329b10016cde275167b7eeff7c0b2b2eb64948ec5b2359a0bb279a835bd1c45d |
+| js   | ok   | ok  | 13           | 329b10016cde275167b7eeff7c0b2b2eb64948ec5b2359a0bb279a835bd1c45d |
+| ts   | ok   | ok  | 13           | 329b10016cde275167b7eeff7c0b2b2eb64948ec5b2359a0bb279a835bd1c45d |
+| c    | ok   | ok  | 13           | 329b10016cde275167b7eeff7c0b2b2eb64948ec5b2359a0bb279a835bd1c45d |
+| cpp  | ok   | ok  | 13           | 329b10016cde275167b7eeff7c0b2b2eb64948ec5b2359a0bb279a835bd1c45d |
+
+Golden stdout (also in `gate/fixtures/casino-cashback.stdout`):
+
+```
+1000
+0
+149
+0
+```
+
+($100 net loss at 10% = $10.00; a winning period and break-even rebate 0;
+$9.99 loss at 15% = $1.49 — integer division floors.)
+
+## casino-aml-structuring
+
+- Gate: `cuni check games/casino-aml-structuring.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `384fcf00a5c8e0e130adc514edbc5f3c0991ac7ed6c5c366a5161ec6367caa20`
+- Seat matrix, every seat 10 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 10           | dc5cd560900fa1e825fe219b99689a600a24c97cd8beb31d322733f0825f3e5d |
+| js   | ok   | ok  | 10           | dc5cd560900fa1e825fe219b99689a600a24c97cd8beb31d322733f0825f3e5d |
+| ts   | ok   | ok  | 10           | dc5cd560900fa1e825fe219b99689a600a24c97cd8beb31d322733f0825f3e5d |
+| c    | ok   | ok  | 10           | dc5cd560900fa1e825fe219b99689a600a24c97cd8beb31d322733f0825f3e5d |
+| cpp  | ok   | ok  | 10           | dc5cd560900fa1e825fe219b99689a600a24c97cd8beb31d322733f0825f3e5d |
+
+Golden stdout (also in `gate/fixtures/casino-aml-structuring.stdout`):
+
+```
+1
+0
+1
+0
+0
+```
+
+($10,000 deposit at a $10,000 threshold reports; $9,999.99 does not. Three
+$9,000 deposits = structuring flag; $8,000 window total = clean; one $15,000
+deposit already trips the single-deposit rule, not structuring.)
+
+## casino-referral-bonus
+
+- Gate: `cuni check games/casino-referral-bonus.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `c430a24cbc3237efeb2dd578eb9a083c4143afab7d079db633394cfd7432661d`
+- Seat matrix, every seat 12 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 12           | 1447964e922fa5e5e664ed9cba8ff2ed27c2f9db9084209b287a0daa5e7c44e9 |
+| js   | ok   | ok  | 12           | 1447964e922fa5e5e664ed9cba8ff2ed27c2f9db9084209b287a0daa5e7c44e9 |
+| ts   | ok   | ok  | 12           | 1447964e922fa5e5e664ed9cba8ff2ed27c2f9db9084209b287a0daa5e7c44e9 |
+| c    | ok   | ok  | 12           | 1447964e922fa5e5e664ed9cba8ff2ed27c2f9db9084209b287a0daa5e7c44e9 |
+| cpp  | ok   | ok  | 12           | 1447964e922fa5e5e664ed9cba8ff2ed27c2f9db9084209b287a0daa5e7c44e9 |
+
+Golden stdout (also in `gate/fixtures/casino-referral-bonus.stdout`):
+
+```
+2500
+0
+2500
+```
+
+($20 first deposit = $25.00 bonus; $19.99 = 0; $100 = $25.00.)
+
+## casino-comp-points
+
+- Gate: `cuni check games/casino-comp-points.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `c4f40db460e92402b4b87c0ebbaee5b4f351d5b5204df1f0ee8763c8bffe179f`
+- Seat matrix, every seat 12 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 12           | f137f9b8a29c8ce4f0ee48faea483bbc6e256bc57d28dc3ec6541db949da6531 |
+| js   | ok   | ok  | 12           | f137f9b8a29c8ce4f0ee48faea483bbc6e256bc57d28dc3ec6541db949da6531 |
+| ts   | ok   | ok  | 12           | f137f9b8a29c8ce4f0ee48faea483bbc6e256bc57d28dc3ec6541db949da6531 |
+| c    | ok   | ok  | 12           | f137f9b8a29c8ce4f0ee48faea483bbc6e256bc57d28dc3ec6541db949da6531 |
+| cpp  | ok   | ok  | 12           | f137f9b8a29c8ce4f0ee48faea483bbc6e256bc57d28dc3ec6541db949da6531 |
+
+Golden stdout (also in `gate/fixtures/casino-comp-points.stdout`):
+
+```
+25
+0
+2500
+0
+```
+
+($25.50 wagered = 25 points; 99c wagered = 0; 2,500 points = $25.00.)
+
+## casino-rtp-audit
+
+- Gate: `cuni check games/casino-rtp-audit.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `5b25525b0ccd5960ff05b31d31477f9b8accf0b0d166f17fda9bc149e983cc57`
+- Seat matrix, every seat 16 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 16           | 0098015f4ec26db6ea504e56c8289abee4bf859db3e6c1c14df130feea7b7ed4 |
+| js   | ok   | ok  | 16           | 0098015f4ec26db6ea504e56c8289abee4bf859db3e6c1c14df130feea7b7ed4 |
+| ts   | ok   | ok  | 16           | 0098015f4ec26db6ea504e56c8289abee4bf859db3e6c1c14df130feea7b7ed4 |
+| c    | ok   | ok  | 16           | 0098015f4ec26db6ea504e56c8289abee4bf859db3e6c1c14df130feea7b7ed4 |
+| cpp  | ok   | ok  | 16           | 0098015f4ec26db6ea504e56c8289abee4bf859db3e6c1c14df130feea7b7ed4 |
+
+Golden stdout (also in `gate/fixtures/casino-rtp-audit.stdout`):
+
+```
+9625
+9700
+10000
+```
+
+($9,625 paid on $10,000 wagered = 96.25%; $4,850 on $5,000 = 97.00%;
+even money = 100.00%. Basis points, no decimals, no floats.)
+
+## casino-raffle-draw
+
+- Gate: `cuni check games/casino-raffle-draw.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `ba9c92a34c279e76003d1eb5c65a8fbd9743b0a14134b6b9b8ba627e0330e031`
+- Seat matrix, every seat 7 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 7            | fbd129ab4ee3e7183963ce80892140445174921783bb017d969928e74a473138 |
+| js   | ok   | ok  | 7            | fbd129ab4ee3e7183963ce80892140445174921783bb017d969928e74a473138 |
+| ts   | ok   | ok  | 7            | fbd129ab4ee3e7183963ce80892140445174921783bb017d969928e74a473138 |
+| c    | ok   | ok  | 7            | fbd129ab4ee3e7183963ce80892140445174921783bb017d969928e74a473138 |
+| cpp  | ok   | ok  | 7            | fbd129ab4ee3e7183963ce80892140445174921783bb017d969928e74a473138 |
+
+Golden stdout (also in `gate/fixtures/casino-raffle-draw.stdout`):
+
+```
+77
+7
+9
+```
+
+(seed 12345, 100 tickets -> ticket 77; seed 999, 50 tickets -> ticket 7;
+seed 1, 10 tickets -> ticket 9.)
+
+Exactness note: the first draft mixed the seed with full 64-bit LCG
+constants and the gate refused it — Python big-ints, C int64 wrap, and JS
+doubles computed three different winners (33 / 21 / 89). The published
+program keeps all mixing under 2^31 (Park-Miller, same arithmetic as the
+dice game), and all five seats agree. The refusal is the product.
+
+## casino-baccarat-settle
+
+- Gate: `cuni check games/casino-baccarat-settle.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `44bf488f09610fad0e535330dddc4dc066fee4e4ea5ff591c201c187c8f1d004`
+- Seat matrix, every seat 22 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 22           | da399e889e8ea4145f647eda780a0f6a933b498e07f2799f704a571809dfbfc6 |
+| js   | ok   | ok  | 22           | da399e889e8ea4145f647eda780a0f6a933b498e07f2799f704a571809dfbfc6 |
+| ts   | ok   | ok  | 22           | da399e889e8ea4145f647eda780a0f6a933b498e07f2799f704a571809dfbfc6 |
+| c    | ok   | ok  | 22           | da399e889e8ea4145f647eda780a0f6a933b498e07f2799f704a571809dfbfc6 |
+| cpp  | ok   | ok  | 22           | da399e889e8ea4145f647eda780a0f6a933b498e07f2799f704a571809dfbfc6 |
+
+Golden stdout (also in `gate/fixtures/casino-baccarat-settle.stdout`):
+
+```
+2000
+1950
+9000
+1000
+0
+```
+
+($10 on player, player wins = $20.00; $10 on banker, banker wins = $19.50
+after the 5% commission; $10 on tie, tie = $90.00; $10 on player on a tie
+hand pushes — $10.00 back; $10 on banker, player wins = 0.)
 
 ## Notes
 

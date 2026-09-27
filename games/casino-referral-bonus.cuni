@@ -1,0 +1,21 @@
+# Referral bonus — an ExactOdds casino rule pack.
+#
+# Referral deals live in marketing copy until someone asks where their $25
+# went. This program is the offer, published: qualifying first deposit in,
+# exact bonus in cents out. The referrer and the referee can each run it —
+# it is the same program on every seat, or it refuses to compile.
+#
+# Rules: a first deposit of $20.00 or more earns a flat $25.00 bonus.
+# Anything less earns 0. No percentages, no tiers, no floats.
+
+def referral_bonus(first_deposit_cents: int) -> int do
+    if first_deposit_cents >= 2000 do
+        ret 2500
+    end
+    ret 0
+end
+
+# Audited cases.
+say(referral_bonus(2000))
+say(referral_bonus(1999))
+say(referral_bonus(10000))

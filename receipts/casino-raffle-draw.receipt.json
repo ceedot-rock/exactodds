@@ -1,0 +1,8 @@
+{
+  "path": "/home/hatch/workspace/exactodds/games/casino-raffle-draw.cuni",
+  "source_hash": "ba9c92a34c279e76003d1eb5c65a8fbd9743b0a14134b6b9b8ba627e0330e031",
+  "exact": true,
+  "summary": "exactness: PASS (5 langs)",
+  "langs": 5,
+  "seats": [{"id":"py","seat":"native","emit":true,"run":true},{"id":"js","seat":"native","emit":true,"run":true},{"id":"ts","seat":"native","emit":true,"run":true},{"id":"c","seat":"native","emit":true,"run":true},{"id":"cpp","seat":"native","emit":true,"run":true}]
+}

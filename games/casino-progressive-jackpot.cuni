@@ -1,0 +1,24 @@
+# Progressive jackpot pool — an ExactOdds casino rule pack.
+#
+# Progressive pools grow by a fixed contribution of every bet and reset to
+# the seed the moment someone wins. Players should be able to verify the
+# pool is where the casino says it is: this program takes the starting pool,
+# the bets, and the contribution rate, and reproduces the pool exactly.
+#
+# Rules: each bet adds bet * contrib_pct / 100 to the pool (integer division
+# floors, fractions of a cent stay with the house). After a jackpot win the
+# pool resets to the published seed — never to zero, never to a number the
+# casino picks after the fact.
+
+def jackpot_pool_after(pool_cents: int, bet_cents: int, contrib_pct: int) -> int do
+    ret pool_cents + bet_cents * contrib_pct / 100
+end
+
+def jackpot_reset(seed_cents: int) -> int do
+    ret seed_cents
+end
+
+# Audited cases: $10,000 pool, $10 bet at 2%, seed $5,000.
+say(jackpot_pool_after(1000000, 1000, 2))
+say(jackpot_pool_after(1000020, 500, 2))
+say(jackpot_reset(500000))

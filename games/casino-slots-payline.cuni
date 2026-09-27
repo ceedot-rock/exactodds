@@ -1,0 +1,49 @@
+# Slots payline evaluator — an ExactOdds casino rule pack.
+#
+# Paytable disputes are the oldest fight in slots: the player saw three
+# sevens, the screen said otherwise. This program is the paytable both sides
+# run — bet, symbol, and match count in, exact win in cents out. The casino
+# publishes the program; the player replays any disputed spin against it.
+#
+# Rules: single payline, symbols 1=cherry 2=lemon 3=bell 4=seven 5=diamond.
+# Pays on 3, 4, or 5 of a kind only; anything less pays 0. Win = bet * the
+# multiplier below. Integer cents throughout. No floats — floats can't be exact.
+
+def paytable_mult(symbol: int, match_count: int) -> int do
+    if match_count < 3 do
+        ret 0
+    end
+    if symbol == 1 do
+        if match_count == 3 do ret 2 end
+        if match_count == 4 do ret 5 end
+        ret 20
+    end
+    if symbol == 2 do
+        if match_count == 3 do ret 3 end
+        if match_count == 4 do ret 10 end
+        ret 40
+    end
+    if symbol == 3 do
+        if match_count == 3 do ret 5 end
+        if match_count == 4 do ret 20 end
+        ret 100
+    end
+    if symbol == 4 do
+        if match_count == 3 do ret 10 end
+        if match_count == 4 do ret 50 end
+        ret 250
+    end
+    if match_count == 3 do ret 25 end
+    if match_count == 4 do ret 100 end
+    ret 1000
+end
+
+def slots_win(bet_cents: int, symbol: int, match_count: int) -> int do
+    ret bet_cents * paytable_mult(symbol, match_count)
+end
+
+# Audited cases.
+say(slots_win(100, 4, 3))
+say(slots_win(100, 5, 5))
+say(slots_win(100, 1, 2))
+say(slots_win(50, 3, 4))

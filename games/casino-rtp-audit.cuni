@@ -1,0 +1,19 @@
+# RTP audit — an ExactOdds casino rule pack.
+#
+# Return-to-player is the number regulators actually check: total paid out
+# divided by total wagered, over the audit window. This program is the
+# formula, published: the auditor takes the casino's own ledger totals,
+# runs them through this program, and gets the exact RTP in basis points.
+# 9600 means 96.00%. Same totals, same answer, on every seat.
+#
+# Rules: RTP = paid * 10000 / wagered, integer division floors. Reported in
+# basis points so no decimal point — and no floats — ever appear.
+
+def rtp_bps(wagered_cents: int, paid_cents: int) -> int do
+    ret paid_cents * 10000 / wagered_cents
+end
+
+# Audited cases.
+say(rtp_bps(1000000, 962500))
+say(rtp_bps(500000, 485000))
+say(rtp_bps(100000, 100000))

@@ -1,0 +1,24 @@
+# Loyalty comp points — an ExactOdds casino rule pack.
+#
+# Comp points are a currency, and every currency needs an audited mint.
+# This program is the mint: every $1.00 wagered earns 1 point, every point
+# redeems for 1 cent. The player can replay their whole wagering history
+# through this program and land on the exact point balance the casino shows.
+#
+# Rules: earn = wagered / 100 (integer division floors — 99 cents wagered
+# earns nothing). Redeem = points cents, 1 point = 1 cent, no rounding.
+# No floats anywhere — floats can't be exact.
+
+def comp_earn(wagered_cents: int) -> int do
+    ret wagered_cents / 100
+end
+
+def comp_redeem(points: int) -> int do
+    ret points
+end
+
+# Audited cases.
+say(comp_earn(2550))
+say(comp_earn(99))
+say(comp_redeem(2500))
+say(comp_redeem(0))

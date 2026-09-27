@@ -14,10 +14,15 @@ run different rules in production than the ones it showed the auditor.
 
 - `games/` — four reference games (`provably-fair-dice.cuni`,
   `provably-fair-coin-flip.cuni`, `provably-fair-roulette.cuni`,
-  `provably-fair-crash.cuni`) and five casino rule packs
+  `provably-fair-crash.cuni`) and fifteen casino rule packs
   (`casino-bonus-wagering.cuni`, `casino-poker-rake.cuni`,
   `casino-sportsbook-settlement.cuni`, `casino-affiliate-revshare.cuni`,
-  `casino-responsible-limits.cuni`). Short, readable,
+  `casino-responsible-limits.cuni`, `casino-slots-payline.cuni`,
+  `casino-progressive-jackpot.cuni`, `casino-tourney-points.cuni`,
+  `casino-cashback.cuni`, `casino-aml-structuring.cuni`,
+  `casino-referral-bonus.cuni`, `casino-comp-points.cuni`,
+  `casino-rtp-audit.cuni`, `casino-raffle-draw.cuni`,
+  `casino-baccarat-settle.cuni`). Short, readable,
   deterministic: seeds in, result out. All money math is integer cents —
   no floats anywhere.
 - `gate/` — the exactness gate runner (`run-gate.sh`), golden fixtures
