@@ -1,0 +1,18 @@
+{
+  "name": "exactodds-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ExactOdds rule packs over HTTP.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "python3 build.py"
+  },
+  "dependencies": {
+    "exactodds": "^1.0.0",
+    "express": "^4.21.2"
+  },
+  "license": "AGPL-3.0-only",
+  "keywords": [],
+  "author": ""
+}

@@ -30,6 +30,17 @@ run different rules in production than the ones it showed the auditor.
 - `receipts/` — source-hash receipts from the verified 2026-09-26 runs.
 - `paper/` — `PAPER.md` (the full protocol paper), `PAPER.pdf`, and
   `OPERATOR_ONEPAGER.md` (one page for casino operators).
+- `sdk/js/` — the `exactodds` npm package: all 35 rule functions as a JS
+  library, generated from the `.cuni` sources. `npm test` replays every
+  audited case against the golden fixtures.
+- `sdk/mcp/` — the `exactodds-mcp` package: all 35 rule functions as MCP
+  tools over stdio. `npx -y exactodds-mcp` in your MCP client config.
+- `api/` — `exactodds-api`: `POST /v1/<program>/<function>` with JSON
+  integers; every answer carries the `source_hash` of the CuNi rules that
+  ran. Dockerfile + `fly.toml` included.
+
+All three consume the same emitted JS seat, so npm, MCP, and API can never
+disagree with each other — or with the Python, C, and C++ seats.
 
 ## Verify a game in 5 steps (players)
 
