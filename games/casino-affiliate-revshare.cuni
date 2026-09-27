@@ -1,0 +1,36 @@
+# Affiliate revenue share — an ExactOdds casino rule pack.
+#
+# Affiliate deals are a permanent dispute factory: which NGR number, which
+# tier, negative carryover or not. This program is the tier table both sides
+# run — the affiliate pastes the reported NGR and gets the exact payment the
+# operator's system produced, because it is the same program.
+#
+# Rules: tier by monthly NGR — under $10,000 pays 25%, $10,000 to $49,999.99
+# pays 30%, $50,000 and up pays 35%. A losing month (NGR <= 0) pays 0: no
+# negative payments, no negative carryover. Integer division floors.
+# All money in integer cents. No floats anywhere — floats can't be exact.
+
+def revshare_tier(ngr_cents: int) -> int do
+    if ngr_cents >= 5000000 do
+        ret 35
+    end
+    if ngr_cents >= 1000000 do
+        ret 30
+    end
+    ret 25
+end
+
+def affiliate_pay(ngr_cents: int) -> int do
+    if ngr_cents <= 0 do
+        ret 0
+    end
+    ret ngr_cents * revshare_tier(ngr_cents) / 100
+end
+
+# Audited cases.
+say(revshare_tier(500000))
+say(revshare_tier(2000000))
+say(revshare_tier(6000000))
+say(affiliate_pay(2000000))
+say(affiliate_pay(6000000))
+say(affiliate_pay(-50000))

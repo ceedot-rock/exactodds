@@ -1,8 +1,8 @@
 # ExactOdds exactness gate report — 2026-09-26
 
-Six programs gated on the same day, same seat matrix
-(py, js, ts, c, cpp — native seats): three provably-fair reference games
-plus three casino rule packs. Every seat emitted and ran; stdout had
+Nine programs gated on the same day, same seat matrix
+(py, js, ts, c, cpp — native seats): four provably-fair reference games
+plus five casino rule packs. Every seat emitted and ran; stdout had
 to be byte-identical or the run fails. Nothing was faked: outputs below are
 the real seat outputs, captured per seat.
 
@@ -176,6 +176,90 @@ Golden stdout (also in `gate/fixtures/casino-poker-rake.stdout`):
 
 (5% of $100 pot caps at $3.00; 5% of $20 is $1.00; 5% of $1000 caps at $3.00;
 empty pot rakes 0.)
+
+## casino-sportsbook-settlement
+
+- Gate: `cuni check games/casino-sportsbook-settlement.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `c006d146447596921541e22c96855130a8cc1bde57bbcbbda8d2d4e3482bbc43`
+- Seat matrix, every seat 21 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 21           | d3c3df5afe63badff5fc7dfd54c2b9c550f67ab3355b54b6d1818c2828065fce |
+| js   | ok   | ok  | 21           | d3c3df5afe63badff5fc7dfd54c2b9c550f67ab3355b54b6d1818c2828065fce |
+| ts   | ok   | ok  | 21           | d3c3df5afe63badff5fc7dfd54c2b9c550f67ab3355b54b6d1818c2828065fce |
+| c    | ok   | ok  | 21           | d3c3df5afe63badff5fc7dfd54c2b9c550f67ab3355b54b6d1818c2828065fce |
+| cpp  | ok   | ok  | 21           | d3c3df5afe63badff5fc7dfd54c2b9c550f67ab3355b54b6d1818c2828065fce |
+
+Golden stdout (also in `gate/fixtures/casino-sportsbook-settlement.stdout`):
+
+```
+2500
+1500
+0
+1000
+954
+```
+
+($10 at +150 wins $25.00; $10 at -200 wins $15.00; a loss pays 0; a void
+returns the $10 stake; $5 at -110 wins $9.54 — integer division floors.)
+
+## casino-affiliate-revshare
+
+- Gate: `cuni check games/casino-affiliate-revshare.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `9c71a8b01ac01dfccd2bc04b21399c9b9cd326a85397a69739c48a0cb7c86c82`
+- Seat matrix, every seat 26 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 26           | ec9f04e804bf0ec9c1b56810c2fe3e92553551ffab954ee06c830629a56f95b7 |
+| js   | ok   | ok  | 26           | ec9f04e804bf0ec9c1b56810c2fe3e92553551ffab954ee06c830629a56f95b7 |
+| ts   | ok   | ok  | 26           | ec9f04e804bf0ec9c1b56810c2fe3e92553551ffab954ee06c830629a56f95b7 |
+| c    | ok   | ok  | 26           | ec9f04e804bf0ec9c1b56810c2fe3e92553551ffab954ee06c830629a56f95b7 |
+| cpp  | ok   | ok  | 26           | ec9f04e804bf0ec9c1b56810c2fe3e92553551ffab954ee06c830629a56f95b7 |
+
+Golden stdout (also in `gate/fixtures/casino-affiliate-revshare.stdout`):
+
+```
+25
+30
+35
+600000
+2100000
+0
+```
+
+($5k NGR tiers at 25%, $20k at 30%, $60k at 35%; payments $6,000 and $21,000;
+a losing month pays 0 — no negative carryover.)
+
+## casino-responsible-limits
+
+- Gate: `cuni check games/casino-responsible-limits.cuni --only py,js,ts,c,cpp --receipt`
+- Front-end: ok. Emit/run: 5/5 ok. `exactness: PASS (5 langs)`
+- Source SHA-256: `7e2c64a7b2824bacbd5ee598c5ab5792fabf6815caa0bde9d05afd47b78d7f50`
+- Seat matrix, every seat 8 bytes, byte-identical (verified with `cmp`):
+
+| seat | emit | run | stdout bytes | stdout SHA-256 |
+|------|------|-----|--------------|----------------|
+| py   | ok   | ok  | 8            | 41500605ef25d270f64bdabc5983441bb1f3182fcf5d1d01f59a74db036292f3 |
+| js   | ok   | ok  | 8            | 41500605ef25d270f64bdabc5983441bb1f3182fcf5d1d01f59a74db036292f3 |
+| ts   | ok   | ok  | 8            | 41500605ef25d270f64bdabc5983441bb1f3182fcf5d1d01f59a74db036292f3 |
+| c    | ok   | ok  | 8            | 41500605ef25d270f64bdabc5983441bb1f3182fcf5d1d01f59a74db036292f3 |
+| cpp  | ok   | ok  | 8            | 41500605ef25d270f64bdabc5983441bb1f3182fcf5d1d01f59a74db036292f3 |
+
+Golden stdout (also in `gate/fixtures/casino-responsible-limits.stdout`):
+
+```
+1
+0
+1
+0
+```
+
+($80 deposited + $20 under a $100 cap allowed; $90 + $20 denied. $40 net loss
++ $10 bet under a $50 loss limit allowed; $45 + $10 denied.)
 
 ## Notes
 

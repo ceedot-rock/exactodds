@@ -1,0 +1,33 @@
+# Responsible gambling limits — an ExactOdds casino rule pack.
+#
+# Deposit caps and loss limits must behave identically on web, mobile, and
+# API — a limit that holds on one channel and leaks on another is a
+# regulatory incident. This program is the limit check every channel runs:
+# same deposits, same limits, same answer, or the program refuses to compile.
+#
+# Rules: a deposit is allowed (1) only if deposited + deposit stays within
+# the cap; a bet is allowed (1) only if net loss + the full stake stays
+# within the loss limit (worst case: the whole bet loses). 0 denies.
+# Regulators hold a copy and re-run it against the operator's logs.
+
+def deposit_allowed(deposited_cents: int, limit_cents: int, deposit_cents: int) -> int do
+    if deposited_cents + deposit_cents <= limit_cents do
+        ret 1
+    els
+        ret 0
+    end
+end
+
+def bet_allowed(net_loss_cents: int, loss_limit_cents: int, bet_cents: int) -> int do
+    if net_loss_cents + bet_cents <= loss_limit_cents do
+        ret 1
+    els
+        ret 0
+    end
+end
+
+# Audited cases: $100 deposit cap, $50 loss limit.
+say(deposit_allowed(8000, 10000, 2000))
+say(deposit_allowed(9000, 10000, 2000))
+say(bet_allowed(4000, 5000, 1000))
+say(bet_allowed(4500, 5000, 1000))

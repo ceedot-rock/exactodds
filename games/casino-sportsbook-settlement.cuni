@@ -1,0 +1,32 @@
+# Sportsbook settlement — an ExactOdds casino rule pack.
+#
+# Moneyline settlement with American odds. The bettor's app, the trading
+# desk, and the regulator each run this same program: same stake, same odds,
+# same result, same payout — or the program refuses to compile on a seat.
+#
+# Rules: result 1 = won, 0 = lost, 2 = void/push (stake returned).
+# American odds: positive (+150) pays stake * odds / 100 profit; negative
+# (-200) pays stake * 100 / -odds profit. Integer division floors, so
+# fractions of a cent stay with the house — identically on every seat.
+# All money in integer cents. No floats anywhere — floats can't be exact.
+
+def settle_moneyline(stake_cents: int, american_odds: int, result: int) -> int do
+    if result == 0 do
+        ret 0
+    end
+    if result == 2 do
+        ret stake_cents
+    end
+    if american_odds > 0 do
+        ret stake_cents + stake_cents * american_odds / 100
+    els
+        ret stake_cents + stake_cents * 100 / (0 - american_odds)
+    end
+end
+
+# Audited cases.
+say(settle_moneyline(1000, 150, 1))
+say(settle_moneyline(1000, -200, 1))
+say(settle_moneyline(1000, 150, 0))
+say(settle_moneyline(1000, -200, 2))
+say(settle_moneyline(500, -110, 1))
