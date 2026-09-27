@@ -69,7 +69,7 @@ fixture drifted.
 ## License
 
 Dual-licensed: AGPL-3.0 (`LICENSE.AGPL-3.0`) or the Slid Phi Labs Commercial
-License (`LICENSE.COMMERCIAL`). See `LICENSE` and `NOTICE`.
+License (`LICENSE.COMMERCIAL`) at $11,000/yr per operator. See `LICENSE` and `NOTICE`.
 
 Copyright (c) 2026 Slid Phi Labs / Corey Tasz.
 

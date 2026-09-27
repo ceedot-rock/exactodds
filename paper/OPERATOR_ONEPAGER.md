@@ -60,4 +60,4 @@ Read `paper/PAPER.md` (the full protocol), then run `./gate/run-gate.sh`
 to reproduce the PASS yourself. The gate either passes everywhere or the
 game is refused — that's the whole pitch.
 
-*Slid Phi Labs — AGPL-3.0, commercial licenses available.*
+*Slid Phi Labs — AGPL-3.0, or commercial license at $11,000/yr per operator. Contact Corey@slidphilabs.com.*
