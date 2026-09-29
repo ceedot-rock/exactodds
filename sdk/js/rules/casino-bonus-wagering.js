@@ -1,8 +1,8 @@
-// Generated from games/casino-bonus-wagering.cuni — do not hand-edit.
-const { say, range, abs, min, max, _cuni_slice, _cuni_div, CuNiError } = require('../runtime.js');
+// Generated from games/casino-bonus-wagering.exactodds — do not hand-edit.
+const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
 
 function wager_contrib(bet_cents, weight_pct) {
-    return _cuni_div((bet_cents * weight_pct), 100);
+    return _eo_div((bet_cents * weight_pct), 100);
 }
 
 function wagering_remaining(required_cents, wagered_cents, bet_cents, weight_pct) {

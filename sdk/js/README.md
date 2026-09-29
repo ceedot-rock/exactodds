@@ -11,7 +11,7 @@ If five independent implementations agree down to the last byte, the game can't 
 This package is the JavaScript build of those rules: every function, integer math only, no floats anywhere.
 
 Provably-fair casino rule packs as a JavaScript library. Every function is
-emitted from a CuNi source program that passed the ExactOdds exactness gate:
+emitted from an ExactOdds rule source that passed the ExactOdds exactness gate:
 byte-identical output on the Python, JS, TS, C, and C++ seats, or the
 program refuses to compile.
 
@@ -29,7 +29,7 @@ All money is integer cents. No floats anywhere.
 - `programs['<slug>']` — rule functions namespaced by program, e.g.
   `programs['casino-sportsbook-settlement'].settle_moneyline(...)`
 - Flat exports — every rule function also exported by name.
-- `SOURCE_HASHES` — SHA-256 of the CuNi source each module was built from.
+- `SOURCE_HASHES` — SHA-256 of the rule source each module was built from.
   Compare against the receipts in the repo to prove which rules you're running.
 
 ## Programs
@@ -45,7 +45,7 @@ comp points, RTP audit, raffle draws, and baccarat settlement.
 The modules are generated, not hand-written:
 
 ```
-npm run build   # re-emits from games/*.cuni
+npm run build   # re-emits from games/*.exactodds
 npm test        # rebuilds, then replays every audited case against the golden fixtures
 ```
 

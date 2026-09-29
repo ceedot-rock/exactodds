@@ -22,17 +22,17 @@ run different rules in production than the ones it showed the auditor.
 
 ## What's here
 
-- `games/` — four reference games (`provably-fair-dice.cuni`,
-  `provably-fair-coin-flip.cuni`, `provably-fair-roulette.cuni`,
-  `provably-fair-crash.cuni`) and fifteen casino rule packs
-  (`casino-bonus-wagering.cuni`, `casino-poker-rake.cuni`,
-  `casino-sportsbook-settlement.cuni`, `casino-affiliate-revshare.cuni`,
-  `casino-responsible-limits.cuni`, `casino-slots-payline.cuni`,
-  `casino-progressive-jackpot.cuni`, `casino-tourney-points.cuni`,
-  `casino-cashback.cuni`, `casino-aml-structuring.cuni`,
-  `casino-referral-bonus.cuni`, `casino-comp-points.cuni`,
-  `casino-rtp-audit.cuni`, `casino-raffle-draw.cuni`,
-  `casino-baccarat-settle.cuni`). Short, readable,
+- `games/` — four reference games (`provably-fair-dice.exactodds`,
+  `provably-fair-coin-flip.exactodds`, `provably-fair-roulette.exactodds`,
+  `provably-fair-crash.exactodds`) and fifteen casino rule packs
+  (`casino-bonus-wagering.exactodds`, `casino-poker-rake.exactodds`,
+  `casino-sportsbook-settlement.exactodds`, `casino-affiliate-revshare.exactodds`,
+  `casino-responsible-limits.exactodds`, `casino-slots-payline.exactodds`,
+  `casino-progressive-jackpot.exactodds`, `casino-tourney-points.exactodds`,
+  `casino-cashback.exactodds`, `casino-aml-structuring.exactodds`,
+  `casino-referral-bonus.exactodds`, `casino-comp-points.exactodds`,
+  `casino-rtp-audit.exactodds`, `casino-raffle-draw.exactodds`,
+  `casino-baccarat-settle.exactodds`). Short, readable,
   deterministic: seeds in, result out. All money math is integer cents —
   no floats anywhere.
 - `gate/` — the exactness gate runner (`run-gate.sh`), golden fixtures
@@ -41,12 +41,12 @@ run different rules in production than the ones it showed the auditor.
 - `paper/` — `PAPER.md` (the full protocol paper), `PAPER.pdf`, and
   `OPERATOR_ONEPAGER.md` (one page for casino operators).
 - `sdk/js/` — the `exactodds` npm package: all 35 rule functions as a JS
-  library, generated from the `.cuni` sources. `npm test` replays every
+  library, generated from the `.exactodds` sources. `npm test` replays every
   audited case against the golden fixtures.
 - `sdk/mcp/` — the `exactodds-mcp` package: all 35 rule functions as MCP
   tools over stdio. `npx -y exactodds-mcp` in your MCP client config.
 - `api/` — `exactodds-api`: `POST /v1/<program>/<function>` with JSON
-  integers; every answer carries the `source_hash` of the CuNi rules that
+  integers; every answer carries the `source_hash` of the ExactOdds rules that
   ran. Dockerfile + `fly.toml` included.
 
 All three consume the same emitted JS seat, so npm, MCP, and API can never
@@ -57,9 +57,9 @@ disagree with each other — or with the Python, C, and C++ seats.
 You need the game's source, a SHA-256 tool, and any one of: Python 3, node,
 or gcc.
 
-1. **Get the source.** `games/provably-fair-coin-flip.cuni` in this repo, or
+1. **Get the source.** `games/provably-fair-coin-flip.exactodds` in this repo, or
    the copy your house publishes.
-2. **Hash it.** `sha256sum games/provably-fair-coin-flip.cuni` must equal the
+2. **Hash it.** `sha256sum games/provably-fair-coin-flip.exactodds` must equal the
    `source_hash` in `receipts/provably-fair-coin-flip.receipt.json`. If not,
    that's a different game — stop.
 3. **Check the revealed seed.** After your round the house reveals its

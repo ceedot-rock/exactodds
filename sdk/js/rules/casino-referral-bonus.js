@@ -1,5 +1,5 @@
-// Generated from games/casino-referral-bonus.cuni — do not hand-edit.
-const { say, range, abs, min, max, _cuni_slice, _cuni_div, CuNiError } = require('../runtime.js');
+// Generated from games/casino-referral-bonus.exactodds — do not hand-edit.
+const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
 
 function referral_bonus(first_deposit_cents) {
     if ((first_deposit_cents >= 2000)) {

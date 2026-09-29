@@ -1,5 +1,5 @@
-// Generated from games/casino-affiliate-revshare.cuni — do not hand-edit.
-const { say, range, abs, min, max, _cuni_slice, _cuni_div, CuNiError } = require('../runtime.js');
+// Generated from games/casino-affiliate-revshare.exactodds — do not hand-edit.
+const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
 
 function revshare_tier(ngr_cents) {
     if ((ngr_cents >= 5000000)) {
@@ -15,7 +15,7 @@ function affiliate_pay(ngr_cents) {
     if ((ngr_cents <= 0)) {
         return 0;
     }
-    return _cuni_div((ngr_cents * revshare_tier(ngr_cents)), 100);
+    return _eo_div((ngr_cents * revshare_tier(ngr_cents)), 100);
 }
 
 module.exports = { revshare_tier, affiliate_pay };

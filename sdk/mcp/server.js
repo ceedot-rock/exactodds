@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // exactodds-mcp — every ExactOdds rule pack as MCP tools.
-// Generated from games/*.cuni — do not hand-edit.
+// Generated from games/*.exactodds — do not hand-edit.
 const { Server } = require("@modelcontextprotocol/sdk/server/index.js");
 const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
 const { CallToolRequestSchema, ListToolsRequestSchema } = require("@modelcontextprotocol/sdk/types.js");

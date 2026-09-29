@@ -1,4 +1,4 @@
-// Replays every audited say() from the .cuni sources against the built
+// Replays every audited say() from the .exactodds sources against the built
 // modules and diffs the golden fixtures. Any drift fails loudly.
 const fs = require('fs');
 const path = require('path');

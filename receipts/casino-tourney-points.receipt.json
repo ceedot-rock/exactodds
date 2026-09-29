@@ -1,8 +1,39 @@
 {
-  "path": "/home/hatch/workspace/exactodds/games/casino-tourney-points.cuni",
+  "path": "games/casino-tourney-points.exactodds",
   "source_hash": "be59fa0d6c1847b9e5ba0e7c3a9495fd14fded625516e4c6404201ef002ce66d",
   "exact": true,
   "summary": "exactness: PASS (5 langs)",
   "langs": 5,
-  "seats": [{"id":"py","seat":"native","emit":true,"run":true},{"id":"js","seat":"native","emit":true,"run":true},{"id":"ts","seat":"native","emit":true,"run":true},{"id":"c","seat":"native","emit":true,"run":true},{"id":"cpp","seat":"native","emit":true,"run":true}]
+  "seats": [
+    {
+      "id": "py",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "js",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "ts",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "c",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "cpp",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    }
+  ]
 }

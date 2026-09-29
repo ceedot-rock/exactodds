@@ -1,4 +1,4 @@
-// CuNi JS seat runtime — shared by all rule modules. Do not hand-edit.
+// ExactOdds JS runtime — shared by all rule modules. Do not hand-edit.
 function say(x) {
     console.log(typeof x === "boolean" ? (x ? "True" : "False") : String(x));
 }
@@ -26,20 +26,20 @@ function max(a, b) {
     return a >= b ? a : b;
 }
 
-function _cuni_slice(xs, a, b) {
+function _eo_slice(xs, a, b) {
     a = Math.trunc(Number(a)); b = Math.trunc(Number(b));
     const n = xs.length;
     if (a < 0 || b < 0 || a > n || b > n || a > b) return typeof xs === "string" ? "" : [];
     return xs.slice(a, b);
 }
 
-function _cuni_div(a, b) {
+function _eo_div(a, b) {
     if (Number.isInteger(a) && Number.isInteger(b) && b !== 0) return Math.trunc(a / b);
     return a / b;
 }
 
-// Raised by `fail` — CuNi's explicit failure-signaling statement.
-class CuNiError extends Error {}
+// Raised by `fail` — the explicit failure-signaling statement.
+class ExactOddsError extends Error {}
 
 
-module.exports = { say, range, abs, min, max, _cuni_slice, _cuni_div, CuNiError };
+module.exports = { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError };

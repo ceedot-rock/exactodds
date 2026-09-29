@@ -1,8 +1,39 @@
 {
-  "path": "/home/hatch/workspace/exactodds/games/casino-cashback.cuni",
+  "path": "games/casino-cashback.exactodds",
   "source_hash": "c193f4cdfbe7da2438f7a788fceb7c5d4579b2e1521eeb6499eb9a019920ab47",
   "exact": true,
   "summary": "exactness: PASS (5 langs)",
   "langs": 5,
-  "seats": [{"id":"py","seat":"native","emit":true,"run":true},{"id":"js","seat":"native","emit":true,"run":true},{"id":"ts","seat":"native","emit":true,"run":true},{"id":"c","seat":"native","emit":true,"run":true},{"id":"cpp","seat":"native","emit":true,"run":true}]
+  "seats": [
+    {
+      "id": "py",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "js",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "ts",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "c",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "cpp",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    }
+  ]
 }

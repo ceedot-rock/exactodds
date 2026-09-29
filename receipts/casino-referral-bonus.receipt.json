@@ -1,8 +1,39 @@
 {
-  "path": "/home/hatch/workspace/exactodds/games/casino-referral-bonus.cuni",
+  "path": "games/casino-referral-bonus.exactodds",
   "source_hash": "c430a24cbc3237efeb2dd578eb9a083c4143afab7d079db633394cfd7432661d",
   "exact": true,
   "summary": "exactness: PASS (5 langs)",
   "langs": 5,
-  "seats": [{"id":"py","seat":"native","emit":true,"run":true},{"id":"js","seat":"native","emit":true,"run":true},{"id":"ts","seat":"native","emit":true,"run":true},{"id":"c","seat":"native","emit":true,"run":true},{"id":"cpp","seat":"native","emit":true,"run":true}]
+  "seats": [
+    {
+      "id": "py",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "js",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "ts",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "c",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "cpp",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    }
+  ]
 }

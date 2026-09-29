@@ -9,6 +9,11 @@
 #   4. Compares the winning stdout against the golden fixtures in
 #      gate/fixtures/. Any drift from the audited outputs fails the run.
 #
+# Rule sources ship as games/*.exactodds (no CuNi branding on public
+# surfaces). The reference compiler only accepts .cuni input, so each game
+# is checked via a temp copy; receipts record the repo-relative .exactodds
+# path.
+#
 # Usage:  ./gate/run-gate.sh
 # Env:    PROVABLY_COMPILER=/path/to/cuni   (overrides auto-detect)
 #
@@ -42,22 +47,34 @@ CUNI="$(find_compiler)" || {
 echo "run-gate: compiler: $CUNI"
 
 fail=0
-for game in "$REPO"/games/*.cuni; do
-    name="$(basename "$game" .cuni)"
+for game in "$REPO"/games/*.exactodds; do
+    name="$(basename "$game" .exactodds)"
     echo "--- $name"
-    out="$("$CUNI" check "$game" --only "$SEATS" --receipt 2>&1)"
+    tmpdir="$(mktemp -d)"
+    tmp="$tmpdir/$name.cuni"
+    cp "$game" "$tmp"
+    out="$("$CUNI" check "$tmp" --only "$SEATS" --receipt 2>&1)"
     echo "$out"
-    echo "$out" | grep -q "exactness: PASS" || { echo "run-gate: GATE FAILED for $name"; fail=1; continue; }
+    if ! echo "$out" | grep -q "exactness: PASS"; then
+        echo "run-gate: GATE FAILED for $name"; fail=1; rm -rf "$tmpdir"; continue
+    fi
 
     # Re-derive the winning stdout from the fixtures and demand a match.
     # (The gate itself already demanded byte-identical seats; this checks the
     # audited golden outputs haven't drifted.)
-    rec="$REPO/games/$name.receipt.json"
-    [ -f "$rec" ] && mv "$rec" "$REPO/receipts/$name.receipt.json"
+    if [ -f "$tmpdir/$name.receipt.json" ]; then
+        NAME="$name" REPO="$REPO" REC="$tmpdir/$name.receipt.json" python3 -c "
+import json, os
+d = json.load(open(os.environ['REC']))
+d['path'] = 'games/' + os.environ['NAME'] + '.exactodds'
+json.dump(d, open(os.path.join(os.environ['REPO'], 'receipts',
+                              os.environ['NAME'] + '.receipt.json'), 'w'), indent=2)
+"
+    fi
 
     fixture="$REPO/gate/fixtures/$(echo "$name" | sed 's/provably-fair-//').stdout"
     if [ -f "$fixture" ]; then
-        got="$("$CUNI" run "$game" --lang py 2>/dev/null)"
+        got="$("$CUNI" run "$tmp" --lang py 2>/dev/null)"
         want="$(cat "$fixture")"
         if [ "$got" = "$want" ]; then
             echo "run-gate: fixture match for $name"
@@ -66,6 +83,7 @@ for game in "$REPO"/games/*.cuni; do
             fail=1
         fi
     fi
+    rm -rf "$tmpdir"
 done
 
 if [ "$fail" -eq 0 ]; then

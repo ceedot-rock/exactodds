@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Build the exactodds MCP server from the gated .cuni sources.
+"""Build the exactodds MCP server from the gated .exactodds sources.
 
-Parses every `def` in games/*.cuni and generates sdk/mcp/server.js:
+Parses every `def` in games/*.exactodds and generates sdk/mcp/server.js:
 one MCP tool per rule function (35 tools), integer params, calling
 the exactodds npm package. Descriptions are plain-language, no agent-speak.
 """
 import json, os, re
 
-ROOT = os.path.expanduser("~/workspace/exactodds")
+ROOT = os.environ.get("EXACTODDS_ROOT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 GAMES = os.path.join(ROOT, "games")
 MCP = os.path.join(ROOT, "sdk", "mcp")
 
@@ -38,7 +38,7 @@ DEF_RE = re.compile(r"^def (\w+)\(([^)]*)\) -> (\w+) do", re.M)
 
 tools = []
 for slug in SLUGS:
-    src = open(os.path.join(GAMES, slug + ".cuni")).read()
+    src = open(os.path.join(GAMES, slug + ".exactodds")).read()
     for name, params, ret in DEF_RE.findall(src):
         ps = [p.strip().split(":")[0].strip() for p in params.split(",") if p.strip()]
         tools.append({"tool": name, "fn": name, "params": ps,
@@ -73,7 +73,7 @@ for t in tools:
 
 server = """#!/usr/bin/env node
 // exactodds-mcp — every ExactOdds rule pack as MCP tools.
-// Generated from games/*.cuni — do not hand-edit.
+// Generated from games/*.exactodds — do not hand-edit.
 const { Server } = require("@modelcontextprotocol/sdk/server/index.js");
 const { StdioServerTransport } = require("@modelcontextprotocol/sdk/server/stdio.js");
 const { CallToolRequestSchema, ListToolsRequestSchema } = require("@modelcontextprotocol/sdk/types.js");

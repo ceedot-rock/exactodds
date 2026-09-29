@@ -1,8 +1,39 @@
 {
-  "path": "/home/hatch/workspace/exactodds/games/casino-bonus-wagering.cuni",
+  "path": "games/casino-bonus-wagering.exactodds",
   "source_hash": "48fdd87f2146172f458a58a18663cd299d07d5a5d555631358573c03dfdd93a3",
   "exact": true,
   "summary": "exactness: PASS (5 langs)",
   "langs": 5,
-  "seats": [{"id":"py","seat":"native","emit":true,"run":true},{"id":"js","seat":"native","emit":true,"run":true},{"id":"ts","seat":"native","emit":true,"run":true},{"id":"c","seat":"native","emit":true,"run":true},{"id":"cpp","seat":"native","emit":true,"run":true}]
+  "seats": [
+    {
+      "id": "py",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "js",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "ts",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "c",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    },
+    {
+      "id": "cpp",
+      "seat": "native",
+      "emit": true,
+      "run": true
+    }
+  ]
 }

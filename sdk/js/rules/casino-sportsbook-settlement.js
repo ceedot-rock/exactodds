@@ -1,5 +1,5 @@
-// Generated from games/casino-sportsbook-settlement.cuni — do not hand-edit.
-const { say, range, abs, min, max, _cuni_slice, _cuni_div, CuNiError } = require('../runtime.js');
+// Generated from games/casino-sportsbook-settlement.exactodds — do not hand-edit.
+const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
 
 function settle_moneyline(stake_cents, american_odds, result) {
     if ((result === 0)) {
@@ -9,9 +9,9 @@ function settle_moneyline(stake_cents, american_odds, result) {
         return stake_cents;
     }
     if ((american_odds > 0)) {
-        return (stake_cents + _cuni_div((stake_cents * american_odds), 100));
+        return (stake_cents + _eo_div((stake_cents * american_odds), 100));
     } else {
-        return (stake_cents + _cuni_div((stake_cents * 100), (0 - american_odds)));
+        return (stake_cents + _eo_div((stake_cents * 100), (0 - american_odds)));
     }
 }
 

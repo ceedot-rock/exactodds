@@ -1,5 +1,5 @@
-// Generated from games/casino-slots-payline.cuni — do not hand-edit.
-const { say, range, abs, min, max, _cuni_slice, _cuni_div, CuNiError } = require('../runtime.js');
+// Generated from games/casino-slots-payline.exactodds — do not hand-edit.
+const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
 
 function paytable_mult(symbol, match_count) {
     if ((match_count < 3)) {

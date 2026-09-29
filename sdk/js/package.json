@@ -1,1 +1,25 @@
-{"author":"Slid Phi Labs <Corey@slidphilabs.com>","description":"ExactOdds — provably-fair casino rule packs. The same rules, on every seat. Integer cents, no floats, ever.","homepage":"https://github.com/ceedot-rock/exactodds","keywords":["casino","provably-fair","gambling","settlement","exactness","cuni"],"license":"AGPL-3.0-only","main":"index.js","name":"exactodds","repository":{"directory":"sdk/js","type":"git","url":"https://github.com/ceedot-rock/exactodds.git"},"scripts":{"build":"python3 build.py","test":"python3 build.py && node test/run.js"},"version":"1.0.0"}
+{
+  "author": "Slid Phi Labs <Corey@slidphilabs.com>",
+  "description": "ExactOdds \u2014 provably-fair casino rule packs. The same rules, on every seat. Integer cents, no floats, ever.",
+  "homepage": "https://github.com/ceedot-rock/exactodds",
+  "keywords": [
+    "casino",
+    "provably-fair",
+    "gambling",
+    "settlement",
+    "exactness"
+  ],
+  "license": "AGPL-3.0-only",
+  "main": "index.js",
+  "name": "exactodds",
+  "repository": {
+    "directory": "sdk/js",
+    "type": "git",
+    "url": "https://github.com/ceedot-rock/exactodds.git"
+  },
+  "scripts": {
+    "build": "python3 build.py",
+    "test": "python3 build.py && node test/run.js"
+  },
+  "version": "1.0.0"
+}

@@ -192,9 +192,9 @@
     </div>
     <p class="srchashes" style="margin-top:16px">
       Gated sources (SHA-256):<br>
-      <code>provably-fair-dice.cuni</code> — <code>795a43fa1864c30565d436e302ac0011662b01a45dc4c023c5af37f76ccdbb44</code><br>
-      <code>provably-fair-coin-flip.cuni</code> — <code>04783043adaf23b7880977bfaacc4324eb02d8d77bf41991f7dfd6037510c3d0</code><br>
-      <code>provably-fair-roulette.cuni</code> — <code>1eaac333fa3d25c23224a0d649a52471e3e38077c406d4913212271d79c9cc9c</code>
+      <code>provably-fair-dice.exactodds</code> — <code>795a43fa1864c30565d436e302ac0011662b01a45dc4c023c5af37f76ccdbb44</code><br>
+      <code>provably-fair-coin-flip.exactodds</code> — <code>04783043adaf23b7880977bfaacc4324eb02d8d77bf41991f7dfd6037510c3d0</code><br>
+      <code>provably-fair-roulette.exactodds</code> — <code>1eaac333fa3d25c23224a0d649a52471e3e38077c406d4913212271d79c9cc9c</code>
     </p>
   </div>
 
@@ -211,12 +211,12 @@
 
 </div>
 <script>
-/* ExactOdds reference math — JavaScript port of the .cuni reference games.
+/* ExactOdds reference math — JavaScript port of the .exactodds reference games.
  *
  * Sources of truth:
- *   games/provably-fair-dice.cuni
- *   games/provably-fair-coin-flip.cuni
- *   games/provably-fair-roulette.cuni
+ *   games/provably-fair-dice.exactodds
+ *   games/provably-fair-coin-flip.exactodds
+ *   games/provably-fair-roulette.exactodds
  *
  * The port MUST stay behavior-identical to those programs. Every audited
  * round in the sources is asserted against gate/fixtures/*.stdout by
@@ -237,7 +237,7 @@
 })(typeof self !== "undefined" ? self : this, function (root) {
   "use strict";
 
-  var MOD = 2147483647n; // 2^31 - 1, exactly as in the .cuni sources
+  var MOD = 2147483647n; // 2^31 - 1, exactly as in the .exactodds sources
   var PM_MULT = 48271n;  // Park-Miller multiplier, exactly as in the sources
 
   function parseSeed(v, name) {
@@ -299,7 +299,7 @@
     }
   }
 
-  // Every audited round from the three .cuni sources, with the expected
+  // Every audited round from the three .exactodds sources, with the expected
   // output taken from gate/fixtures/*.stdout.
   var AUDITED = {
     dice: [

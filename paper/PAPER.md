@@ -77,7 +77,7 @@ stay inside. Nothing about the outcome is left to the machine's mood.
 Three games ship in this repository, all gated 2026-09-26 on the five-seat
 matrix (py, js, ts, c, cpp). All passed: every seat byte-identical.
 
-### Game 1 — Dice (`games/provably-fair-dice.cuni`)
+### Game 1 — Dice (`games/provably-fair-dice.exactodds`)
 
 Mixes `server_seed`, `client_seed`, and `round` with a Park-Miller step,
 then takes the roll as `(state % 6) + 1`. Also exposes a 0–99 roll.
@@ -94,7 +94,7 @@ Audited outputs (same seeds, every seat, 9 bytes total):
 Source SHA-256: `795a43fa1864c30565d436e302ac0011662b01a45dc4c023c5af37f76ccdbb44`
 Stdout SHA-256: `a79a72f0b7987fab1a4e54c85f617a723f5d2b25aa1d3b2f2fc3a2a470ba5f8b`
 
-### Game 2 — Coin flip (`games/provably-fair-coin-flip.cuni`)
+### Game 2 — Coin flip (`games/provably-fair-coin-flip.exactodds`)
 
 Same derivation shape as the dice game (seed mix + Park-Miller step); the
 flip is heads when the state is even, tails when odd. Also exposes the raw
@@ -118,7 +118,7 @@ tails
 Source SHA-256: `04783043adaf23b7880977bfaacc4324eb02d8d77bf41991f7dfd6037510c3d0`
 Stdout SHA-256: `da48a6ba509f0840da7040eaa51961e9506334e043601253c534437a091202b7`
 
-### Game 3 — European roulette (`games/provably-fair-roulette.cuni`)
+### Game 3 — European roulette (`games/provably-fair-roulette.exactodds`)
 
 Same derivation shape (seed mix + Park-Miller step); the winning number is
 `(state % 37)` — a European wheel, 0–36. Color, odd/even, and high/low are
@@ -146,7 +146,7 @@ Stdout SHA-256: `f3cc95467f2d41d7f96cccb08ba84bd95f53adc0bcb6a5752a7f1e6cab71fe7
 
 You need only Python 3 (or node, gcc — any one seat) and the game's source.
 
-1. **Get the source.** Download `games/provably-fair-coin-flip.cuni` from
+1. **Get the source.** Download `games/provably-fair-coin-flip.exactodds` from
    this repository, or from the house's published copy.
 2. **Check the source hash.** Run `sha256sum` on the file. It must equal the
    source hash in the receipt (`receipts/provably-fair-coin-flip.receipt.json`)

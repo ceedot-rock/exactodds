@@ -1,9 +1,9 @@
-/* ExactOdds reference math — JavaScript port of the .cuni reference games.
+/* ExactOdds reference math — JavaScript port of the .exactodds reference games.
  *
  * Sources of truth:
- *   games/provably-fair-dice.cuni
- *   games/provably-fair-coin-flip.cuni
- *   games/provably-fair-roulette.cuni
+ *   games/provably-fair-dice.exactodds
+ *   games/provably-fair-coin-flip.exactodds
+ *   games/provably-fair-roulette.exactodds
  *
  * The port MUST stay behavior-identical to those programs. Every audited
  * round in the sources is asserted against gate/fixtures/*.stdout by
@@ -24,7 +24,7 @@
 })(typeof self !== "undefined" ? self : this, function (root) {
   "use strict";
 
-  var MOD = 2147483647n; // 2^31 - 1, exactly as in the .cuni sources
+  var MOD = 2147483647n; // 2^31 - 1, exactly as in the .exactodds sources
   var PM_MULT = 48271n;  // Park-Miller multiplier, exactly as in the sources
 
   function parseSeed(v, name) {
@@ -86,7 +86,7 @@
     }
   }
 
-  // Every audited round from the three .cuni sources, with the expected
+  // Every audited round from the three .exactodds sources, with the expected
   // output taken from gate/fixtures/*.stdout.
   var AUDITED = {
     dice: [

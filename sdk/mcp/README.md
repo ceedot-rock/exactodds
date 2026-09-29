@@ -31,7 +31,7 @@ Every tool takes integer params and returns an integer — all money in cents.
 ## Regenerating
 
 ```
-python3 build.py   # regenerates server.js from games/*.cuni
+python3 build.py   # regenerates server.js from games/*.exactodds
 ```
 
 ## License
