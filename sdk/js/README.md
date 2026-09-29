@@ -1,5 +1,15 @@
 # exactodds (npm)
 
+## What ExactOdds is
+
+ExactOdds makes dice that can't lie. It provides the core building blocks for games of chance — dice rolls, coin flips — with the math out in the open and every result verifiable. If a result can't be proven fair, it is refused.
+
+Here is why that matters. An online game runs the same code on many platforms — a phone, a browser, a server — and players have to trust that the house didn't tilt the odds on any one of them. ExactOdds removes the need for trust: the reference games are run through five programming languages — Python, JavaScript, TypeScript, C, and C++ — and all five must print byte-identical results, checked mechanically, not claimed.
+
+If five independent implementations agree down to the last byte, the game can't favor the house on one platform and rob it on another. A disagreement isn't smoothed over — it stops the line. The refusal is the guarantee.
+
+This package is the JavaScript build of those rules: every function, integer math only, no floats anywhere.
+
 Provably-fair casino rule packs as a JavaScript library. Every function is
 emitted from a CuNi source program that passed the ExactOdds exactness gate:
 byte-identical output on the Python, JS, TS, C, and C++ seats, or the
