@@ -1,1 +1,29 @@
-{"author":"Slid Phi Labs <Corey@slidphilabs.com>","bin":{"exactodds-mcp":"server.js"},"dependencies":{"@modelcontextprotocol/sdk":"^1.30.1","exactodds":"^1.0.0"},"description":"ExactOdds rule packs as MCP tools — provably-fair casino math for agents.","homepage":"https://github.com/ceedot-rock/exactodds","keywords":["mcp","casino","provably-fair","exactodds"],"license":"AGPL-3.0-only","name":"exactodds-mcp","repository":{"directory":"sdk/mcp","type":"git","url":"https://github.com/ceedot-rock/exactodds.git"},"scripts":{"build":"python3 build.py"},"version":"1.0.0"}
+{
+  "author": "Slid Phi Labs <Corey@slidphilabs.com>",
+  "bin": {
+    "exactodds-mcp": "server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.1",
+    "exactodds": "^1.0.0"
+  },
+  "description": "ExactOdds rule packs as MCP tools \u2014 provably-fair casino math for agents.",
+  "homepage": "https://github.com/ceedot-rock/exactodds",
+  "keywords": [
+    "mcp",
+    "casino",
+    "provably-fair",
+    "exactodds"
+  ],
+  "license": "(AGPL-3.0-or-later OR LicenseRef-SlidPhiLabs-Commercial)",
+  "name": "exactodds-mcp",
+  "repository": {
+    "directory": "sdk/mcp",
+    "type": "git",
+    "url": "https://github.com/ceedot-rock/exactodds.git"
+  },
+  "scripts": {
+    "build": "python3 build.py"
+  },
+  "version": "1.0.0"
+}

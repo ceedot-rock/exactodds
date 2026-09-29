@@ -9,7 +9,7 @@
     "settlement",
     "exactness"
   ],
-  "license": "AGPL-3.0-only",
+  "license": "(AGPL-3.0-or-later OR LicenseRef-SlidPhiLabs-Commercial)",
   "main": "index.js",
   "name": "exactodds",
   "repository": {
