@@ -1,5 +1,5 @@
 // Generated from games/casino-responsible-limits.exactodds — do not hand-edit.
-const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
+const { say, range, abs, min, max, _eo_slice, _eo_div, _eo_mod, ExactOddsError } = require('../runtime.js');
 
 function deposit_allowed(deposited_cents, limit_cents, deposit_cents) {
     if (((deposited_cents + deposit_cents) <= limit_cents)) {

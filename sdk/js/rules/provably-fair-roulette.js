@@ -1,10 +1,10 @@
 // Generated from games/provably-fair-roulette.exactodds — do not hand-edit.
-const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
+const { say, range, abs, min, max, _eo_slice, _eo_div, _eo_mod, ExactOddsError } = require('../runtime.js');
+const { seedState } = require('../seed-math.js');
 
 function spin(server_seed, client_seed, round) {
-    let mixed = ((((server_seed * 31) + (client_seed * 17)) + (round * 13)) % 2147483647);
-    let state = ((48271 * mixed) % 2147483647);
-    return (state % 37);
+    let state = seedState(server_seed, client_seed, round);
+    return _eo_mod(state, 37);
 }
 
 function is_red(n) {
@@ -27,7 +27,7 @@ function parity_of(n) {
     if ((n === 0)) {
         return "neither";
     } else {
-        if (((n % 2) === 1)) {
+        if ((_eo_mod(n, 2) === 1)) {
             return "odd";
         } else {
             return "even";

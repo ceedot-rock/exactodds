@@ -411,8 +411,12 @@ app.post("/v1/:slug/:fn", (req, res) => {
   const args = [];
   for (const p of spec.params) {
     const v = body[p];
-    if (!Number.isInteger(v)) {
-      return res.status(400).json({ ok: false, error: `param '${p}' must be an integer` });
+    // JSON numbers are doubles: anything that is not a safe integer cannot
+    // be represented exactly, so refuse it here rather than letting it
+    // reach the rules. Non-negative safe integers are the SDK's domain
+    // (sdk/js/seed-math.js); other rule-level refusals map to 400 below.
+    if (!Number.isSafeInteger(v)) {
+      return res.status(400).json({ ok: false, error: `param '${p}' must be a safe integer` });
     }
     args.push(v);
   }
@@ -420,6 +424,10 @@ app.post("/v1/:slug/:fn", (req, res) => {
   try {
     result = rules[spec.name](...args);
   } catch (e) {
+    // Coded input refusals from the SDK are client errors, not server faults.
+    if (e && e.code === "ERR_EXACTODDS_SEED_INPUT") {
+      return res.status(400).json({ ok: false, error: e.message, code: e.code, parameter: e.parameter });
+    }
     return res.status(500).json({ ok: false, error: "rule evaluation failed" });
   }
   res.json({

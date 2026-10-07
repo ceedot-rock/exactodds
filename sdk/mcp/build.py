@@ -83,7 +83,7 @@ const TOOLS = [
 """ + ",\n".join(js_tools) + """
 ];
 
-const server = new Server({ name: "exactodds-mcp", version: "1.0.0" },
+const server = new Server({ name: "exactodds-mcp", version: require("./package.json").version },
   { capabilities: { tools: {} } });
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
@@ -95,9 +95,19 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   if (!t) throw new Error(`unknown tool: ${req.params.name}`);
   const args = req.params.arguments || {};
   for (const p of t.params) {
-    if (!Number.isInteger(args[p])) throw new Error(`param '${p}' must be an integer`);
+    // JSON numbers are doubles: only safe integers are exactly representable.
+    if (!Number.isSafeInteger(args[p])) throw new Error(`param '${p}' must be a safe integer`);
   }
-  const result = rules[t.fn](...t.params.map((p) => args[p]));
+  let result;
+  try {
+    result = rules[t.fn](...t.params.map((p) => args[p]));
+  } catch (e) {
+    // Coded SDK input refusals are client-input errors, not tool failures.
+    if (e && e.code === "ERR_EXACTODDS_SEED_INPUT") {
+      throw new Error(`${e.code}: ${e.message} (parameter: ${e.parameter})`);
+    }
+    throw e;
+  }
   return { content: [{ type: "text", text: String(result) }] };
 });
 

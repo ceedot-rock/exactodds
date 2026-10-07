@@ -1,5 +1,5 @@
 // Generated from games/casino-aml-structuring.exactodds — do not hand-edit.
-const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
+const { say, range, abs, min, max, _eo_slice, _eo_div, _eo_mod, ExactOddsError } = require('../runtime.js');
 
 function aml_report(deposit_cents, threshold_cents) {
     if ((deposit_cents >= threshold_cents)) {

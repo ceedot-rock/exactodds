@@ -1,5 +1,5 @@
 // Generated from games/casino-bonus-wagering.exactodds — do not hand-edit.
-const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
+const { say, range, abs, min, max, _eo_slice, _eo_div, _eo_mod, ExactOddsError } = require('../runtime.js');
 
 function wager_contrib(bet_cents, weight_pct) {
     return _eo_div((bet_cents * weight_pct), 100);

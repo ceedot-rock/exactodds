@@ -1,10 +1,10 @@
 // Generated from games/provably-fair-crash.exactodds — do not hand-edit.
-const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');
+const { say, range, abs, min, max, _eo_slice, _eo_div, _eo_mod, ExactOddsError } = require('../runtime.js');
+const { seedState } = require('../seed-math.js');
 
 function crash_point(server_seed, client_seed, round) {
-    let mixed = ((((server_seed * 31) + (client_seed * 17)) + (round * 13)) % 2147483647);
-    let state = ((48271 * mixed) % 2147483647);
-    let h = (state % 10000);
+    let state = seedState(server_seed, client_seed, round);
+    let h = _eo_mod(state, 10000);
     if ((h < 100)) {
         return 100;
     }

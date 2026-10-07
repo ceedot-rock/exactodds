@@ -19,7 +19,8 @@
   },
   "scripts": {
     "build": "python3 build.py",
-    "test": "python3 build.py && node test/run.js"
+    "test": "python3 build.py && npm run test:candidate",
+    "test:candidate": "node test/run.js && node ../../verifier/validate.mjs && node --test test/numeric-parity.test.js test/seed-arithmetic.test.js && python3 -m unittest discover -s test -p 'test_seed_codegen.py'"
   },
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

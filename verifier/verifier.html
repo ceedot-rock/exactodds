@@ -245,7 +245,15 @@
     if (!/^\d+$/.test(t)) {
       throw new Error(name + " must be a non-negative integer");
     }
-    return BigInt(t);
+    var n = BigInt(t);
+    // Domain alignment with the SDK (sdk/js/seed-math.js): the SDK accepts
+    // only non-negative safe integers, so the verifier refuses anything
+    // outside that range too. A verifier that accepts inputs the SDK
+    // refuses would make "verified" vacuous for those inputs.
+    if (n > 9007199254740991n) {
+      throw new Error(name + " must be a non-negative safe integer (<= 9007199254740991)");
+    }
+    return n;
   }
 
   // mixed = (server_seed * 31 + client_seed * 17 + round * 13) % 2147483647
@@ -286,6 +294,16 @@
       colorOf(n) + " " + parityOf(n) + " " + rangeOf(n);
   }
 
+  // --- crash ---
+  // h = state % 10000 (basis points). h < 100 busts instantly at 1.00x
+  // (the 1% house edge). Otherwise crash = 990000 / (10000 - h), integer
+  // division, in hundredths — exactly as in the .exactodds source.
+  function crashPoint(ss, cs, r) {
+    var h = mix(ss, cs, r).state % 10000n;
+    if (h < 100n) return 100;
+    return Number(990000n / (10000n - h));
+  }
+
   // Dispatcher used by the verifier page.
   function compute(fn, ss, cs, r) {
     switch (fn) {
@@ -295,6 +313,7 @@
       case "flip_bit": return String(flipBit(ss, cs, r));
       case "spin": return String(spin(ss, cs, r));
       case "spin_line": return spinLine(ss, cs, r);
+      case "crash_point": return String(crashPoint(ss, cs, r));
       default: throw new Error("unknown function: " + fn);
     }
   }
@@ -328,6 +347,11 @@
       { label: "spin(111111111, 222222222, 2)", fn: "spin_line", ss: "111111111", cs: "222222222", round: "2", expected: "spin 2: 9 red odd low" },
       { label: "spin(555555555, 999999999, 7)", fn: "spin_line", ss: "555555555", cs: "999999999", round: "7", expected: "spin 7: 23 red odd high" },
       { label: "spin(424242424, 242424242, 13)", fn: "spin_line", ss: "424242424", cs: "242424242", round: "13", expected: "spin 13: 2 black even low" }
+    ],
+    crash: [
+      { label: "crash_point(987654321, 123456789, 1)", fn: "crash_point", ss: "987654321", cs: "123456789", round: "1", expected: "151" },
+      { label: "crash_point(987654321, 123456789, 2)", fn: "crash_point", ss: "987654321", cs: "123456789", round: "2", expected: "110" },
+      { label: "crash_point(111111111, 222222222, 1)", fn: "crash_point", ss: "111111111", cs: "222222222", round: "1", expected: "159" }
     ]
   };
 
@@ -421,6 +445,7 @@
     parityOf: parityOf,
     rangeOf: rangeOf,
     spinLine: spinLine,
+    crashPoint: crashPoint,
     compute: compute,
     AUDITED: AUDITED,
     sha256Hex: sha256Hex,
