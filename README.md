@@ -1,5 +1,12 @@
 # ExactOdds
 
+[![Audited checks](https://github.com/ceedot-rock/exactodds/actions/workflows/audited-checks.yml/badge.svg)](https://github.com/ceedot-rock/exactodds/actions/workflows/audited-checks.yml)
+[![npm](https://img.shields.io/npm/v/exactodds.svg)](https://www.npmjs.com/package/exactodds)
+[![MCP](https://img.shields.io/npm/v/exactodds-mcp.svg?label=mcp)](https://www.npmjs.com/package/exactodds-mcp)
+[![License: AGPL-3.0 OR Commercial](https://img.shields.io/badge/license-AGPL--3.0%20OR%20Commercial-blue.svg)](./LICENSE)
+
+> **Run games?** Read the [operator one-pager](paper/OPERATOR_ONEPAGER.md) · [full paper](paper/PAPER.md) · commercial license: corey@slidphilabs.com
+
 ## What ExactOdds is
 
 ExactOdds makes dice that can't lie. It provides the core building blocks for games of chance — dice rolls, coin flips — with the math out in the open and every result verifiable. If a result can't be proven fair, it is refused.
@@ -108,3 +115,14 @@ Copyright (c) 2026 Slid Phi Labs / Corey Tasz.
 
 Not a casino, not a gaming license, no custody of funds, not a randomness
 source. See §5 of the paper.
+
+## Related projects
+
+| Project | Role |
+|---------|------|
+| [CuNi](https://github.com/ceedot-rock/cuni) | The exactness compiler behind the gate |
+| [Agent-Rider](https://github.com/ceedot-rock/Agent-Rider) | Signed agent identity, spend warrants, receipts |
+| [Quikgater](https://github.com/ceedot-rock/quikgater) | Pay-per-fact web fetch for agents (x402) |
+| [Slid Phi Labs](https://www.slidphilabs.com) | The lab |
+
+Security issues: see [SECURITY.md](SECURITY.md). Contributing: see [CONTRIBUTING.md](CONTRIBUTING.md).

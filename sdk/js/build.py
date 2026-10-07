@@ -17,7 +17,7 @@ ROOT = os.environ.get("EXACTODDS_ROOT", os.path.join(os.path.dirname(os.path.abs
 GAMES = os.path.join(ROOT, "games")
 SDK = os.path.join(ROOT, "sdk", "js")
 RULES = os.path.join(SDK, "rules")
-CUNI = os.path.expanduser("~/workspace/cuni-langs/target/debug/cuni")
+CUNI = os.environ.get("PROVABLY_COMPILER") or os.path.expanduser("~/workspace/cuni-langs/target/debug/cuni")
 HELPERS = {"say", "range", "abs", "min", "max", "_eo_slice", "_eo_div"}
 # The emit backend still names its helpers _cuni_slice/_cuni_div/CuNiError;
 # RENAME_MAP rebrands them in generated output (public surfaces carry

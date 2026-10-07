@@ -7,7 +7,7 @@ carry the CuNi source hash of the rules that ran.
 """
 import json, os, re
 
-ROOT = os.path.expanduser("~/workspace/exactodds")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GAMES = os.path.join(ROOT, "games")
 API = os.path.join(ROOT, "api")
 os.makedirs(API, exist_ok=True)
@@ -38,7 +38,10 @@ DEF_RE = re.compile(r"^def (\w+)\(([^)]*)\) -> (\w+) do", re.M)
 
 registry = {}
 for slug in SLUGS:
-    src = open(os.path.join(GAMES, slug + ".cuni")).read()
+    src_path = os.path.join(GAMES, slug + ".exactodds")
+    if not os.path.exists(src_path):
+        src_path = os.path.join(GAMES, slug + ".cuni")
+    src = open(src_path).read()
     fns = []
     for name, params, ret in DEF_RE.findall(src):
         ps = [p.strip().split(":")[0].strip() for p in params.split(",") if p.strip()]
@@ -55,6 +58,25 @@ const REGISTRY = %s;
 
 const app = express();
 app.use(express.json({ limit: "64kb" }));
+
+app.get("/", (req, res) => {
+  res.json({
+    ok: true,
+    service: "exactodds-api",
+    about: "ExactOdds provably-fair rule packs over HTTP. Every answer carries the source_hash of the rules that ran.",
+    docs: "https://github.com/ceedot-rock/exactodds/tree/main/api",
+    endpoints: {
+      health: "GET /health",
+      programs: "GET /v1/programs",
+      call: "POST /v1/<program>/<function>  (JSON body, integer params)",
+    },
+    example: {
+      request: "POST /v1/provably-fair-coin-flip/flip",
+      body: { server_seed: 12345, client_seed: 678, round: 1 },
+    },
+    programs: Object.keys(REGISTRY).length,
+  });
+});
 
 app.get("/health", (req, res) => res.json({ ok: true, service: "exactodds-api" }));
 
@@ -106,7 +128,7 @@ open(os.path.join(API, "package.json"), "w").write(json.dumps({
     "main": "server.js",
     "scripts": {"start": "node server.js", "build": "python3 build.py"},
     "dependencies": {"exactodds": "^1.0.0", "express": "^4.21.2"},
-    "license": "AGPL-3.0-only",
+    "license": "(AGPL-3.0-or-later OR LicenseRef-SlidPhiLabs-Commercial)",
 }, indent=2) + "\n")
 
 open(os.path.join(API, "Dockerfile"), "w").write(
@@ -141,11 +163,11 @@ open(os.path.join(API, "README.md"), "w").write(
     '{"stake_cents": 1000, "american_odds": 150, "result": 1}\n'
     "-> {\"ok\": true, \"result\": 2500, \"program\": \"...\", \"seat\": \"js\", \"source_hash\": \"...\"}\n"
     "```\n\n"
-    "- `GET /health`, `GET /v1/programs`\n"
+    "- `GET /`, `GET /health`, `GET /v1/programs`\n"
     "- All params must be integers; all money is integer cents.\n"
     "- Every answer carries the `source_hash` of the CuNi rules that ran —\n"
     "  compare it against the receipts in the repo to prove which rules ran.\n\n"
     "Regenerate: `python3 build.py`. Deploy (needs Corey's go-ahead): `fly launch`.\n\n"
-    "License: AGPL-3.0-only. Commercial: Corey@slidphilabs.com — $2,500/yr per operator.\n")
+    "License: AGPL-3.0-or-later OR Slid Phi Labs Commercial. Commercial: Corey@slidphilabs.com — $2,500/yr per operator.\n")
 
 print(f"generated api/server.js: {sum(len(v['functions']) for v in registry.values())} routes")

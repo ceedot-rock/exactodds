@@ -377,6 +377,25 @@ const REGISTRY = {
 const app = express();
 app.use(express.json({ limit: "64kb" }));
 
+app.get("/", (req, res) => {
+  res.json({
+    ok: true,
+    service: "exactodds-api",
+    about: "ExactOdds provably-fair rule packs over HTTP. Every answer carries the source_hash of the rules that ran.",
+    docs: "https://github.com/ceedot-rock/exactodds/tree/main/api",
+    endpoints: {
+      health: "GET /health",
+      programs: "GET /v1/programs",
+      call: "POST /v1/<program>/<function>  (JSON body, integer params)",
+    },
+    example: {
+      request: "POST /v1/provably-fair-coin-flip/flip",
+      body: { server_seed: 12345, client_seed: 678, round: 1 },
+    },
+    programs: Object.keys(REGISTRY).length,
+  });
+});
+
 app.get("/health", (req, res) => res.json({ ok: true, service: "exactodds-api" }));
 
 app.get("/v1/programs", (req, res) => {
