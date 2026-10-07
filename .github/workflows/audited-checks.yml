@@ -1,0 +1,68 @@
+name: Audited checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sdk:
+    name: SDK replays golden fixtures
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Replay every audited case against gate/fixtures
+        working-directory: sdk/js
+        run: node test/run.js
+
+  api:
+    name: API smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install
+        working-directory: api
+        run: npm install --no-audit --no-fund
+      - name: Boot and call endpoints
+        working-directory: api
+        run: |
+          PORT=8080 node server.js &
+          for i in $(seq 1 20); do curl -sf localhost:8080/health && break; sleep 1; done
+          curl -sf localhost:8080/ | grep -q '"service":"exactodds-api"'
+          curl -sf localhost:8080/v1/programs | grep -q '"ok":true'
+          curl -sf -X POST localhost:8080/v1/provably-fair-coin-flip/flip \
+            -H 'content-type: application/json' \
+            -d '{"server_seed":12345,"client_seed":678,"round":1}' | grep -q '"source_hash"'
+
+  receipts:
+    name: Receipts match game sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: sha256(games/*.exactodds) == receipts/*.source_hash
+        run: |
+          python3 - <<'PY'
+          import glob, hashlib, json, os, sys
+          bad = 0
+          for rec in sorted(glob.glob("receipts/*.receipt.json")):
+              d = json.load(open(rec))
+              name = os.path.basename(rec).replace(".receipt.json", "")
+              src = f"games/{name}.exactodds"
+              if not os.path.exists(src):
+                  print(f"MISSING source for {rec}"); bad += 1; continue
+              h = hashlib.sha256(open(src, "rb").read()).hexdigest()
+              ok = h == d.get("source_hash")
+              print(("PASS " if ok else "FAIL ") + name)
+              bad += 0 if ok else 1
+          sys.exit(1 if bad else 0)
+          PY
