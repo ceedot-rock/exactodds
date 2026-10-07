@@ -19,7 +19,8 @@
   },
   "scripts": {
     "build": "python3 build.py",
-    "test": "python3 build.py && node test/run.js"
+    "test": "python3 build.py && npm run test:checked-in",
+    "test:checked-in": "node test/run.js && node test/exact-seeds.cjs && python3 exact_seed_codegen.py --check && python3 -B test/test_exact_seed_codegen.py"
   },
   "version": "1.0.0"
 }

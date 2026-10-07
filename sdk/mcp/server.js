@@ -15,15 +15,21 @@ const TOOLS = [
       "properties": {
             "server_seed": {
                   "type": "integer",
-                  "description": "Integer input server_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input server_seed."
             },
             "client_seed": {
                   "type": "integer",
-                  "description": "Integer input client_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input client_seed."
             },
             "round": {
                   "type": "integer",
-                  "description": "Integer input round."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input round."
             }
       },
       "required": [
@@ -44,15 +50,21 @@ const TOOLS = [
       "properties": {
             "server_seed": {
                   "type": "integer",
-                  "description": "Integer input server_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input server_seed."
             },
             "client_seed": {
                   "type": "integer",
-                  "description": "Integer input client_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input client_seed."
             },
             "round": {
                   "type": "integer",
-                  "description": "Integer input round."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input round."
             }
       },
       "required": [
@@ -73,15 +85,21 @@ const TOOLS = [
       "properties": {
             "server_seed": {
                   "type": "integer",
-                  "description": "Integer input server_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input server_seed."
             },
             "client_seed": {
                   "type": "integer",
-                  "description": "Integer input client_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input client_seed."
             },
             "round": {
                   "type": "integer",
-                  "description": "Integer input round."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input round."
             }
       },
       "required": [
@@ -102,15 +120,21 @@ const TOOLS = [
       "properties": {
             "server_seed": {
                   "type": "integer",
-                  "description": "Integer input server_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input server_seed."
             },
             "client_seed": {
                   "type": "integer",
-                  "description": "Integer input client_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input client_seed."
             },
             "round": {
                   "type": "integer",
-                  "description": "Integer input round."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input round."
             }
       },
       "required": [
@@ -131,15 +155,21 @@ const TOOLS = [
       "properties": {
             "server_seed": {
                   "type": "integer",
-                  "description": "Integer input server_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input server_seed."
             },
             "client_seed": {
                   "type": "integer",
-                  "description": "Integer input client_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input client_seed."
             },
             "round": {
                   "type": "integer",
-                  "description": "Integer input round."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input round."
             }
       },
       "required": [
@@ -160,7 +190,9 @@ const TOOLS = [
       "properties": {
             "n": {
                   "type": "integer",
-                  "description": "Integer input n."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input n."
             }
       },
       "required": [
@@ -179,7 +211,9 @@ const TOOLS = [
       "properties": {
             "n": {
                   "type": "integer",
-                  "description": "Integer input n."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input n."
             }
       },
       "required": [
@@ -198,7 +232,9 @@ const TOOLS = [
       "properties": {
             "n": {
                   "type": "integer",
-                  "description": "Integer input n."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input n."
             }
       },
       "required": [
@@ -217,7 +253,9 @@ const TOOLS = [
       "properties": {
             "n": {
                   "type": "integer",
-                  "description": "Integer input n."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input n."
             }
       },
       "required": [
@@ -236,15 +274,21 @@ const TOOLS = [
       "properties": {
             "server_seed": {
                   "type": "integer",
-                  "description": "Integer input server_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input server_seed."
             },
             "client_seed": {
                   "type": "integer",
-                  "description": "Integer input client_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input client_seed."
             },
             "round": {
                   "type": "integer",
-                  "description": "Integer input round."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input round."
             }
       },
       "required": [
@@ -265,15 +309,21 @@ const TOOLS = [
       "properties": {
             "server_seed": {
                   "type": "integer",
-                  "description": "Integer input server_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input server_seed."
             },
             "client_seed": {
                   "type": "integer",
-                  "description": "Integer input client_seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input client_seed."
             },
             "round": {
                   "type": "integer",
-                  "description": "Integer input round."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input round."
             }
       },
       "required": [
@@ -294,15 +344,21 @@ const TOOLS = [
       "properties": {
             "bet_cents": {
                   "type": "integer",
-                  "description": "Integer input bet_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input bet_cents."
             },
             "cashout_hundredths": {
                   "type": "integer",
-                  "description": "Integer input cashout_hundredths."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input cashout_hundredths."
             },
             "crash_hundredths": {
                   "type": "integer",
-                  "description": "Integer input crash_hundredths."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input crash_hundredths."
             }
       },
       "required": [
@@ -323,11 +379,15 @@ const TOOLS = [
       "properties": {
             "bet_cents": {
                   "type": "integer",
-                  "description": "Integer input bet_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input bet_cents."
             },
             "weight_pct": {
                   "type": "integer",
-                  "description": "Integer input weight_pct."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input weight_pct."
             }
       },
       "required": [
@@ -347,19 +407,27 @@ const TOOLS = [
       "properties": {
             "required_cents": {
                   "type": "integer",
-                  "description": "Integer input required_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input required_cents."
             },
             "wagered_cents": {
                   "type": "integer",
-                  "description": "Integer input wagered_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input wagered_cents."
             },
             "bet_cents": {
                   "type": "integer",
-                  "description": "Integer input bet_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input bet_cents."
             },
             "weight_pct": {
                   "type": "integer",
-                  "description": "Integer input weight_pct."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input weight_pct."
             }
       },
       "required": [
@@ -381,15 +449,21 @@ const TOOLS = [
       "properties": {
             "bonus_cents": {
                   "type": "integer",
-                  "description": "Integer input bonus_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input bonus_cents."
             },
             "wager_mult": {
                   "type": "integer",
-                  "description": "Integer input wager_mult."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input wager_mult."
             },
             "total_wagered_cents": {
                   "type": "integer",
-                  "description": "Integer input total_wagered_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input total_wagered_cents."
             }
       },
       "required": [
@@ -410,15 +484,21 @@ const TOOLS = [
       "properties": {
             "pot_cents": {
                   "type": "integer",
-                  "description": "Integer input pot_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input pot_cents."
             },
             "rake_pct": {
                   "type": "integer",
-                  "description": "Integer input rake_pct."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input rake_pct."
             },
             "cap_cents": {
                   "type": "integer",
-                  "description": "Integer input cap_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input cap_cents."
             }
       },
       "required": [
@@ -439,15 +519,21 @@ const TOOLS = [
       "properties": {
             "stake_cents": {
                   "type": "integer",
-                  "description": "Integer input stake_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input stake_cents."
             },
             "american_odds": {
                   "type": "integer",
-                  "description": "Integer input american_odds."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input american_odds."
             },
             "result": {
                   "type": "integer",
-                  "description": "Integer input result."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input result."
             }
       },
       "required": [
@@ -468,7 +554,9 @@ const TOOLS = [
       "properties": {
             "ngr_cents": {
                   "type": "integer",
-                  "description": "Integer input ngr_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input ngr_cents."
             }
       },
       "required": [
@@ -487,7 +575,9 @@ const TOOLS = [
       "properties": {
             "ngr_cents": {
                   "type": "integer",
-                  "description": "Integer input ngr_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input ngr_cents."
             }
       },
       "required": [
@@ -506,15 +596,21 @@ const TOOLS = [
       "properties": {
             "deposited_cents": {
                   "type": "integer",
-                  "description": "Integer input deposited_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input deposited_cents."
             },
             "limit_cents": {
                   "type": "integer",
-                  "description": "Integer input limit_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input limit_cents."
             },
             "deposit_cents": {
                   "type": "integer",
-                  "description": "Integer input deposit_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input deposit_cents."
             }
       },
       "required": [
@@ -535,15 +631,21 @@ const TOOLS = [
       "properties": {
             "net_loss_cents": {
                   "type": "integer",
-                  "description": "Integer input net_loss_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input net_loss_cents."
             },
             "loss_limit_cents": {
                   "type": "integer",
-                  "description": "Integer input loss_limit_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input loss_limit_cents."
             },
             "bet_cents": {
                   "type": "integer",
-                  "description": "Integer input bet_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input bet_cents."
             }
       },
       "required": [
@@ -564,11 +666,15 @@ const TOOLS = [
       "properties": {
             "symbol": {
                   "type": "integer",
-                  "description": "Integer input symbol."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input symbol."
             },
             "match_count": {
                   "type": "integer",
-                  "description": "Integer input match_count."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input match_count."
             }
       },
       "required": [
@@ -588,15 +694,21 @@ const TOOLS = [
       "properties": {
             "bet_cents": {
                   "type": "integer",
-                  "description": "Integer input bet_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input bet_cents."
             },
             "symbol": {
                   "type": "integer",
-                  "description": "Integer input symbol."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input symbol."
             },
             "match_count": {
                   "type": "integer",
-                  "description": "Integer input match_count."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input match_count."
             }
       },
       "required": [
@@ -617,15 +729,21 @@ const TOOLS = [
       "properties": {
             "pool_cents": {
                   "type": "integer",
-                  "description": "Integer input pool_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input pool_cents."
             },
             "bet_cents": {
                   "type": "integer",
-                  "description": "Integer input bet_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input bet_cents."
             },
             "contrib_pct": {
                   "type": "integer",
-                  "description": "Integer input contrib_pct."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input contrib_pct."
             }
       },
       "required": [
@@ -646,7 +764,9 @@ const TOOLS = [
       "properties": {
             "seed_cents": {
                   "type": "integer",
-                  "description": "Integer input seed_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input seed_cents."
             }
       },
       "required": [
@@ -665,11 +785,15 @@ const TOOLS = [
       "properties": {
             "place": {
                   "type": "integer",
-                  "description": "Integer input place."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input place."
             },
             "entrants": {
                   "type": "integer",
-                  "description": "Integer input entrants."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input entrants."
             }
       },
       "required": [
@@ -689,11 +813,15 @@ const TOOLS = [
       "properties": {
             "net_loss_cents": {
                   "type": "integer",
-                  "description": "Integer input net_loss_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input net_loss_cents."
             },
             "rebate_pct": {
                   "type": "integer",
-                  "description": "Integer input rebate_pct."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input rebate_pct."
             }
       },
       "required": [
@@ -713,11 +841,15 @@ const TOOLS = [
       "properties": {
             "deposit_cents": {
                   "type": "integer",
-                  "description": "Integer input deposit_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input deposit_cents."
             },
             "threshold_cents": {
                   "type": "integer",
-                  "description": "Integer input threshold_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input threshold_cents."
             }
       },
       "required": [
@@ -737,19 +869,27 @@ const TOOLS = [
       "properties": {
             "dep1_cents": {
                   "type": "integer",
-                  "description": "Integer input dep1_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input dep1_cents."
             },
             "dep2_cents": {
                   "type": "integer",
-                  "description": "Integer input dep2_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input dep2_cents."
             },
             "dep3_cents": {
                   "type": "integer",
-                  "description": "Integer input dep3_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input dep3_cents."
             },
             "threshold_cents": {
                   "type": "integer",
-                  "description": "Integer input threshold_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input threshold_cents."
             }
       },
       "required": [
@@ -771,7 +911,9 @@ const TOOLS = [
       "properties": {
             "first_deposit_cents": {
                   "type": "integer",
-                  "description": "Integer input first_deposit_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input first_deposit_cents."
             }
       },
       "required": [
@@ -790,7 +932,9 @@ const TOOLS = [
       "properties": {
             "wagered_cents": {
                   "type": "integer",
-                  "description": "Integer input wagered_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input wagered_cents."
             }
       },
       "required": [
@@ -809,7 +953,9 @@ const TOOLS = [
       "properties": {
             "points": {
                   "type": "integer",
-                  "description": "Integer input points."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input points."
             }
       },
       "required": [
@@ -828,11 +974,15 @@ const TOOLS = [
       "properties": {
             "wagered_cents": {
                   "type": "integer",
-                  "description": "Integer input wagered_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input wagered_cents."
             },
             "paid_cents": {
                   "type": "integer",
-                  "description": "Integer input paid_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input paid_cents."
             }
       },
       "required": [
@@ -852,11 +1002,15 @@ const TOOLS = [
       "properties": {
             "seed": {
                   "type": "integer",
-                  "description": "Integer input seed."
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input seed."
             },
             "tickets": {
                   "type": "integer",
-                  "description": "Integer input tickets."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input tickets."
             }
       },
       "required": [
@@ -876,15 +1030,21 @@ const TOOLS = [
       "properties": {
             "stake_cents": {
                   "type": "integer",
-                  "description": "Integer input stake_cents."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input stake_cents."
             },
             "bet_on": {
                   "type": "integer",
-                  "description": "Integer input bet_on."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input bet_on."
             },
             "winner": {
                   "type": "integer",
-                  "description": "Integer input winner."
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Safe integer input winner."
             }
       },
       "required": [
@@ -911,7 +1071,7 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   if (!t) throw new Error(`unknown tool: ${req.params.name}`);
   const args = req.params.arguments || {};
   for (const p of t.params) {
-    if (!Number.isInteger(args[p])) throw new Error(`param '${p}' must be an integer`);
+    if (!Number.isSafeInteger(args[p])) throw new Error(`param '${p}' must be a safe integer`);
   }
   const result = rules[t.fn](...t.params.map((p) => args[p]));
   return { content: [{ type: "text", text: String(result) }] };

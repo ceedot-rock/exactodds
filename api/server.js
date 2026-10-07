@@ -411,8 +411,8 @@ app.post("/v1/:slug/:fn", (req, res) => {
   const args = [];
   for (const p of spec.params) {
     const v = body[p];
-    if (!Number.isInteger(v)) {
-      return res.status(400).json({ ok: false, error: `param '${p}' must be an integer` });
+    if (!Number.isSafeInteger(v)) {
+      return res.status(400).json({ ok: false, error: `param '${p}' must be a safe integer` });
     }
     args.push(v);
   }
@@ -420,6 +420,9 @@ app.post("/v1/:slug/:fn", (req, res) => {
   try {
     result = rules[spec.name](...args);
   } catch (e) {
+    if (e && e.code === "EXACTODDS_INVALID_SEED") {
+      return res.status(400).json({ ok: false, error: e.message });
+    }
     return res.status(500).json({ ok: false, error: "rule evaluation failed" });
   }
   res.json({

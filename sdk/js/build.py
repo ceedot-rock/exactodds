@@ -12,6 +12,7 @@ Set EXACTODDS_ROOT to the repo checkout (defaults to the repo layout
 relative to this script).
 """
 import json, os, re, subprocess, sys
+from exact_seed_codegen import TARGETS, IMPORT, lower_body, validate_targets
 
 ROOT = os.environ.get("EXACTODDS_ROOT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 GAMES = os.path.join(ROOT, "games")
@@ -77,11 +78,12 @@ for slug in SLUGS:
     for name, params, body in FUNC_RE.findall(text):
         if name in HELPERS or name == "main":
             continue
-        rule_funcs.append((name, params, body))
+        rule_funcs.append((name, params, lower_body(slug, name, body)))
         if name in all_funcs:
             print(f"COLLISION: {name} in {all_funcs[name]} and {slug}", file=sys.stderr)
             sys.exit(1)
         all_funcs[name] = slug
+    validate_targets(slug, [name for name, _, _ in rule_funcs])
 
     # runtime.js = everything before the first rule function
     first_rule = f"function {rule_funcs[0][0]}("
@@ -90,6 +92,8 @@ for slug in SLUGS:
     lines = [f"// Generated from games/{slug}.exactodds — do not hand-edit.",
              "const { say, range, abs, min, max, _eo_slice, _eo_div, ExactOddsError } = require('../runtime.js');",
              ""]
+    if slug in TARGETS:
+        lines.insert(2, IMPORT)
     for name, params, body in rule_funcs:
         lines.append(f"function {name}({params}) {{{body}}}")
         lines.append("")

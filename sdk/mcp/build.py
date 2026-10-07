@@ -57,7 +57,12 @@ for t in tools:
             f"{t['blurb']} All money in integer cents.")
     schema = {
         "type": "object",
-        "properties": {p: {"type": "integer", "description": f"Integer input {p}."}
+        "properties": {p: {
+                          "type": "integer",
+                          "minimum": 0 if p in {"server_seed", "client_seed", "round", "seed"} else -9007199254740991,
+                          "maximum": 9007199254740991,
+                          "description": f"Safe integer input {p}."
+                      }
                       for p in t["params"]},
         "required": t["params"],
         "additionalProperties": False,
@@ -95,7 +100,7 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   if (!t) throw new Error(`unknown tool: ${req.params.name}`);
   const args = req.params.arguments || {};
   for (const p of t.params) {
-    if (!Number.isInteger(args[p])) throw new Error(`param '${p}' must be an integer`);
+    if (!Number.isSafeInteger(args[p])) throw new Error(`param '${p}' must be a safe integer`);
   }
   const result = rules[t.fn](...t.params.map((p) => args[p]));
   return { content: [{ type: "text", text: String(result) }] };

@@ -18,9 +18,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Replay every audited case against gate/fixtures
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay audited cases, exact seed regressions, and codegen checks
         working-directory: sdk/js
-        run: node test/run.js
+        run: npm run test:checked-in
+      - name: Validate browser verifier fixtures
+        run: node verifier/validate.mjs
 
   api:
     name: API smoke test
@@ -32,7 +37,9 @@ jobs:
           node-version: 22
       - name: Install
         working-directory: api
-        run: npm install --no-audit --no-fund
+        run: |
+          npm install --no-audit --no-fund --ignore-scripts
+          npm install --no-save --package-lock=false --ignore-scripts ../sdk/js
       - name: Boot and call endpoints
         working-directory: api
         run: |
@@ -43,6 +50,15 @@ jobs:
           curl -sf -X POST localhost:8080/v1/provably-fair-coin-flip/flip \
             -H 'content-type: application/json' \
             -d '{"server_seed":12345,"client_seed":678,"round":1}' | grep -q '"source_hash"'
+          curl -sf -X POST localhost:8080/v1/provably-fair-dice/roll_dice \
+            -H 'content-type: application/json' \
+            -d '{"server_seed":1234567890123456,"client_seed":1,"round":1}' \
+            | node -e 'let s="";process.stdin.on("data",d=>s+=d);process.stdin.on("end",()=>{if(JSON.parse(s).result!==2)process.exit(1)})'
+          code=$(curl -s -o /tmp/invalid-seed.json -w '%{http_code}' \
+            -X POST localhost:8080/v1/provably-fair-dice/roll_dice \
+            -H 'content-type: application/json' \
+            -d '{"server_seed":-1,"client_seed":1,"round":1}')
+          test "$code" = "400"
 
   receipts:
     name: Receipts match game sources
