@@ -123,6 +123,12 @@ source. See §5 of the paper.
 | [CuNi](https://github.com/ceedot-rock/cuni) | The exactness compiler behind the gate |
 | [Agent-Rider](https://github.com/ceedot-rock/Agent-Rider) | Signed agent identity, spend warrants, receipts |
 | [Quikgater](https://github.com/ceedot-rock/quikgater) | Pay-per-fact web fetch for agents (x402) |
+| [AwLPay](https://github.com/ceedot-rock/awlpay) | Multi-rail agent payments (USDC x402, PayPal sandbox bridge) |
+| [agenTill](https://github.com/ceedot-rock/agenTill) | Drop-in payment box for agent storefronts |
+| [TNSSRC](https://github.com/ceedot-rock/neural-pcc) | Local lossless compression engine |
+| [pulsar](https://github.com/ceedot-rock/pulsar-best) | Free local best-path compressor (GPLv3 demo) |
+| [TRUSTREAM](https://github.com/ceedot-rock/trustream) | Lossless compression for live data streams |
+| [Chamber](https://github.com/ceedot-rock/json-chamber-sdk) | Two-key JSON sealing for secrets |
 | [Slid Phi Labs](https://www.slidphilabs.com) | The lab |
 
 Security issues: see [SECURITY.md](SECURITY.md). Contributing: see [CONTRIBUTING.md](CONTRIBUTING.md).

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: ExactOdds
+authors:
+  - family-names: Tasz
+    given-names: Corey
+    email: corey@slidphilabs.com
+    affiliation: Slid Phi Labs
+version: 1.1.0
+date-released: 2026-10-09
+repository-code: "https://github.com/ceedot-rock/exactodds"
+url: "https://www.slidphilabs.com"
+license: AGPL-3.0-or-later
+abstract: "Provably-fair gaming protocol: commit-reveal seeds plus an exactness law requiring byte-identical rule output across Python, JavaScript, TypeScript, C, and C++, or refusal. Integer-cents money math. Dual-licensed AGPL-3.0 OR commercial."
