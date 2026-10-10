@@ -1,0 +1,26 @@
+# ExactOdds
+
+ExactOdds is provably-fair game math from Slid Phi Labs: commit-reveal seeds prove the outcome was fixed before your bet, and the exactness law proves the rules — reference games (dice, coin flip, roulette, crash) plus 15 casino rule packs must produce byte-identical output across five languages (Python, JavaScript, TypeScript, C, C++) or the program is refused. A disagreement stops the line; the refusal is the guarantee.
+
+## Key facts
+
+- All money math is integer cents — no floats anywhere. Seeds in, result out; every API answer carries the `source_hash` of the ExactOdds rules that ran.
+- npm: `exactodds` (JS SDK, all 35 rule functions, `npm test` replays audited cases against golden fixtures); `exactodds-mcp` (MCP server, `npx -y exactodds-mcp`).
+- API: `exactodds-api`, `POST /v1/<program>/<function>` with JSON integers (Dockerfile + `fly.toml` included).
+- Gate: `gate/run-gate.sh` runs the exactness gate; report in `gate/GATE_REPORT.md`; receipts from verified 2026-09-26 runs in `receipts/`.
+- Paper: `paper/PAPER.md` (+ PDF); operator one-pager: `paper/OPERATOR_ONEPAGER.md`.
+- Dual-licensed: AGPL-3.0 OR Slid Phi Labs Commercial License (commercial: corey@slidphilabs.com).
+- Contact: corey@slidphilabs.com. Lab: https://www.slidphilabs.com
+
+## Quick start
+
+```bash
+npm install exactodds
+```
+
+```js
+const eo = require("exactodds");
+// see sdk/js for the 35 rule functions; every call is deterministic: seeds in, result out
+```
+
+Players verify any game in 5 steps with just a SHA-256 tool and Python/node/gcc — see the README's "Verify a game in 5 steps (players)".
